@@ -17,6 +17,7 @@ import java.util.Date;
 @Table(name = "sys_user")
 @Data
 @RequiredArgsConstructor
+@EqualsAndHashCode(of = "userId")
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Builder
 public class SysUser implements Serializable {
