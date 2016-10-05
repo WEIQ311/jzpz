@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>首页</title>
+    <script type="text/javascript" src="./head.js"></script>
+    <script type="text/javascript" src="./js/createTable.js"></script>
+    <style>
+        .userCheckbox{
+            width:25px;
+            height:25px;
+        }
+        th,td{
+            text-align: center;
+            vertical-align: middle !important;
+        }
+    </style>
+</head>
+<body>
+<div class="container" style="margin-top: 30px;" ng-app="createTable" ng-controller="createTableCtr">
+    <form  class="form-horizontal" role="form">
+        <div class="form-group">
+            <lable for="tableName"  class="control-label col-sm-1">表名：</lable>
+            <div class="col-sm-9">
+                <input type="text" id="tableName" class="form-control" ng-model="tableName"placeholder="请输入表名">
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-primary" ng-click="createTable()">提交</button>
+                <button type="button" class="btn btn-warning" ng-click="initTable()">重置</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-8">
+               {{errorMessage}}
+            </div>
+        </div>
+    </form>
+<div class="table-responsive">
+    <table class="table table-bordered table-condensed table-hover">
+        <colgroup>
+            <col style="width: 4%">
+            <col>
+            <col>
+            <col style="width: 120px;">
+            <col>
+            <col>
+            <col width="4%">
+            <col width="4%">
+            <col width="4%">
+            <col width="7%">
+        </colgroup>
+        <thead>
+            <tr class="info">
+                <th>序号</th>
+                <th>列中文名</th>
+                <th>列英文名</th>
+                <th>列类型</th>
+                <th>列长度</th>
+                <th>表ID</th>
+                <th>是否主键</th>
+                <th>是否唯一</th>
+                <th>是否为空</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="column in columns" ng-class="{success:isEven($index+1)}">
+                <td>{{$index+1}}</td>
+                <td><input type="text" class="form-control col-sm-2" ng-model="column.columnChnName"></td>
+                <td><input type="text" class="form-control col-sm-2" ng-model="column.columnEngName"></td>
+                <td><select  class="form-control col-sm-2" ng-model="column.columnType">
+                    <option ng-repeat="cType in columnTypes" value="{{cType.name}}">{{cType.name}}</option>
+                </select></td>
+                <td><input type="number" class="form-control col-sm-2" ng-model="column.columnLength"></td>
+                <td><input type="text" class="form-control col-sm-2" ng-model="column.tableId"></td>
+                <td><input type="checkbox" class="form-control col-sm-2 userCheckbox" ng-model="column.isPrimary"></td>
+                <td><input type="checkbox" class="form-control col-sm-2 userCheckbox" ng-model="column.isUnique"></td>
+                <td><input type="checkbox" class="form-control col-sm-2 userCheckbox" ng-model="column.isEmpty"></td>
+                <td><span class="glyphicon glyphicon-plus-sign" style="color:rgb(62, 189, 81);cursor: pointer;" ng-show="isFirstOrLastColumn($index+1)" ng-click="addRow()"></span>
+                    <span class="glyphicon glyphicon-minus-sign" style="color:rgb(222, 38, 21);cursor: pointer;" ng-click="removeRow($index)"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+</body>
+</html>
