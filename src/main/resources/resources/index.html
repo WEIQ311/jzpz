@@ -17,7 +17,7 @@
                 function () {
                     jQuery(this).parent().find('li').removeClass('active').end().end().addClass('active');
                 });
-            _openPage('./module/createTable/index.html');
+            _openPage('./module/public/clock.html');
         });
         var _openPage = function (url) {
             jQuery('#mainIFrame').attr('src',url);
@@ -41,7 +41,7 @@
         <div class="collapse navbar-collapse" id="example-navbar-collapse">
             <ul class="nav navbar-nav" id="navbar-menu">
                 <li class="active">
-                    <a href="javascript:_openPage('./module/createTable/index.html')">创建表格
+                    <a href="javascript:_openPage('./module/public/clock.html')">小时钟
                         <span class="selected"></span>
                     </a>
                 </li>
