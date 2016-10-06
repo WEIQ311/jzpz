@@ -4,18 +4,31 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>时钟</title>
     <style>
-        div{
+        .clock{
            text-align: center;
             vert-align: middle !important;
         }
-        #userClock{
-            border: 1px solid #ccc;
+        #userClock,#numberClock{
+            /*border: 1px solid #ccc;*/
         }
     </style>
 </head>
 <body>
-<div>
+<div class="clock">
     <canvas id="userClock" width="450px" height="450px"></canvas>
+    <div id="numberClock"  style="width: 450px;height: 50px;margin: 3px auto"></div>
+    <style>
+        @font-face {
+            font-family: "LcdD";
+            src: url("./../../css/LcdD.TTF");
+        }
+        #numberClock{
+            font-family: LcdD;
+            font-size: 50px;
+            line-height: 50px;
+            font-weight: 300;
+        }
+    </style>
     <script type="text/javascript" src="../../js/clock.js"></script>
 </div>
 </body>

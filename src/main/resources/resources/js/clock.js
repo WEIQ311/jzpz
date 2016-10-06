@@ -2,18 +2,20 @@
  * Created by weiQiang on 15:44.
  */
 var dom = document.getElementById('userClock');
+var numberClock = document.getElementById('numberClock');
 var ctx = dom.getContext('2d');
 var width = ctx.canvas.width;
 var height = ctx.canvas.height;
 var r = width / 2;
+//防止画布变大结构不变
 var rem = width / 200 ;
-//画背景
+//绘制背景
 function drawBackGround() {
     ctx.save();
     //重置圆心
     ctx.translate(r,r);
     ctx.beginPath();
-    ctx.lineWidth = 10*rem;
+    ctx.lineWidth = 8*rem;
     ctx.arc(0,0,r-ctx.lineWidth/2,0,2*Math.PI,false);
     ctx.stroke();
     var hourNumbers = [3,4,5,6,7,8,9,10,11,12,1,2];
@@ -106,6 +108,8 @@ function draw() {
     drawSeconds(second);
     drawDot();
     ctx.restore();
+    //设置数字显示屏
+    numberClock.innerHTML=(hour<10?'0'+hour:hour)+':'+(minute<10?'0'+minute:minute)+':'+'<font color="#c14543">'+(second<10?'0'+second:second)+'</font>';
 }
 draw();
 setInterval(draw,1000);
