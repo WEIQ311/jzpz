@@ -5,6 +5,16 @@
     <title>首页</title>
     <script type="text/javascript" src="./../../head.js"></script>
     <script type="text/javascript" src="./../../js/createTable.js"></script>
+    <script>
+        $(function () {
+            $('#myModal').modal({
+                keyboard: false,
+                backdrop:'static',
+                show :false
+            })
+        });
+
+    </script>
     <style>
         .userCheckbox{
             width:25px;
@@ -27,11 +37,6 @@
             <div class="col-sm-2">
                 <button type="button" class="btn btn-primary" ng-click="createTable()">提交</button>
                 <button type="button" class="btn btn-warning" ng-click="initTable()">重置</button>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-8">
-               {{errorMessage}}
             </div>
         </div>
     </form>
@@ -83,6 +88,22 @@
         </tbody>
     </table>
 </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <span style="color: #de1d08;font-weight: bolder;" ng-bind="errorMessage"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

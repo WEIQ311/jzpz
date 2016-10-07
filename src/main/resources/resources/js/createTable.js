@@ -65,6 +65,9 @@ app.controller('createTableCtr',['$scope','$http',function ($scope,$http) {
             if(responses.flag){
                 $scope.initTable();
             }
+            $('#myModal').modal({
+                show:true
+            });
             $scope.errorMessage = responses.message;
         }).error(function(responses,status, nativeStatusText, headers){
             $scope.errorMessage = '服务器异常';
