@@ -54,8 +54,8 @@ app.controller('createTableCtr',['$scope','$http',function ($scope,$http) {
     }
     $scope.createTable=function () {
         $http({
+            url:content+'table/create',
             method: 'POST',
-            url:'table/create',
             params: {
                 tableName:$scope.tableName,
                 columns:angular.toJson($scope.columns)
