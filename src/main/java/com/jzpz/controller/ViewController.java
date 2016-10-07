@@ -11,11 +11,10 @@ import javax.servlet.http.HttpServletRequest;
  * Created by weiQiang on 2016/10/2.
  */
 @Controller
-@RequestMapping(value = "view")
 public class ViewController {
-    @RequestMapping(value = "toLogin",method = RequestMethod.GET)
+    @RequestMapping(value = "/403", method = RequestMethod.GET)
     public ModelAndView toLoginPage (HttpServletRequest request){
-        System.out.println("进入登录界面");
+        System.out.println("进入无权限界面");
         ModelAndView mav = new ModelAndView("/login.html");
         return mav;
     }

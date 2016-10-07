@@ -8,19 +8,12 @@ app.controller('loginCtr',['$scope','$http',function ($scope,$http) {
         if($scope.userName.trim()!=''&&$scope.password.trim()!=''){
             $http({
                 url:content+'user/login',
-                method:'GET',
-                data:{
+                method:'POST',
+                params:{
                     username:$scope.userName,
-                    password:$scope.password,
-                    _csrf:'6829blae-0a14-4920-aac4-5abbd7eeb9ee'
+                    password:$scope.password //,
+                    //CSRF:'6829blae-0a14-4920-aac4-5abbd7eeb9ee'
                 }
-                // url:content+'j_spring_security_check',
-                // method:'POST',
-                // params:{
-                //     j_username:$scope.userName,
-                //     j_password:$scope.password,
-                //     _csrf:'6829blae-0a14-4920-aac4-5abbd7eeb9ee'
-                // }
             }).success(function (response) {
                 if(response.flag){
                     document.location='index.html';

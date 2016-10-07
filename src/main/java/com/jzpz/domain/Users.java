@@ -20,7 +20,17 @@ import java.io.Serializable;
 @Builder
 public class Users implements Serializable {
     @Id
-    private String username;
-    private String password;
-    private Integer enabled;
+    private Integer id;
+    private String userName;
+    private String passWord;
+    private String role;
+
+    private String realName;
+
+    private String mobile;
+
+    private Integer state;
+
+    private String info;
+
 }
