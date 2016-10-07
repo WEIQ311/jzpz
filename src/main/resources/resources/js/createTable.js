@@ -68,6 +68,12 @@ app.controller('createTableCtr',['$scope','$http',function ($scope,$http) {
             $scope.errorMessage = responses.message;
         }).error(function(responses,status, nativeStatusText, headers){
             $scope.errorMessage = '服务器异常';
+            /**
+            $('.container')
+                .modal("show")
+                .find(".modal-body")
+                .empty()
+                .html("<p>异常<br>服务器异常</p>");*/
         });
     }
     //初始化/重置

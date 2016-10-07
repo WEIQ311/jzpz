@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -56,12 +57,5 @@ public class UserController {
             e.printStackTrace();
             return  new ModelAndView("/login.html"); //Result.builder().flag(false).message("用户不存在或密码错误").build();
         }
-    }
-    //登出
-    @RequestMapping(value = "logout",method = RequestMethod.GET)
-    public Result userLogout (){
-        System.out.println("用户登登出------------------");
-        session.removeAttribute(USERSESSION_KEY);
-        return Result.builder().flag(true).message("").build();
     }
 }
