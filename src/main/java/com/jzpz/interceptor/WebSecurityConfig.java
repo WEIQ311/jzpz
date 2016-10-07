@@ -30,13 +30,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers(
                     HttpMethod.GET,
                     "/*.html",
-                    "/**/**/*.html",
+                    "/**/*.html",
                     "/*.js",
                     "/**/*.js",
-                    "/**/*.TTF",
-                    "/**/**/**/*.js",
-                    "/**/**/**/*.map",
-                    "/**/**/**/*.css"
+                    "/**/*.woff2",
+                    "/**/*.woff",
+                    "/**/*.map",
+                    "/**/*.css",
+                    "/**/*.TTF"
             ).permitAll()
             .antMatchers("/user/**").permitAll()
             .anyRequest().authenticated()

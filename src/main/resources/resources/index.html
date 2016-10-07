@@ -9,7 +9,7 @@
            jQuery(window).resize(function () {
                setTimeout(function () {
                    jQuery('#mainIFrame').height(
-                       jQuery(window).height()-jQuery('#navbar').height()-5
+                       jQuery(window).height()-jQuery('#navbar').height()-25
                    );
                 },100);
            }).resize();
@@ -48,8 +48,8 @@
             </ul>
         </div>
     </div>
-    <iframe scrolling="auto" frameborder="0"  id="mainIFrame" style="padding: 0;margin: 0;width: 100%;height: 100%" marginwidth="0" marginheight="0">
-    </iframe>
 </div>
+<iframe scrolling="auto" frameborder="0"  id="mainIFrame" style="padding: 0;margin: 0;width: 100%;height: 100%" marginwidth="0" marginheight="0">
+</iframe>
 </body>
 </html>
