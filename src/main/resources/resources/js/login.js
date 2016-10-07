@@ -10,8 +10,9 @@ app.controller('loginCtr',['$scope','$http',function ($scope,$http) {
                 url:content+'user/login',
                 method:'GET',
                 data:{
-                    userName:$scope.userName,
-                    passWord:$scope.password
+                    username:$scope.userName,
+                    password:$scope.password,
+                    _csrf:'6829blae-0a14-4920-aac4-5abbd7eeb9ee'
                 }
             }).success(function (response) {
                 if(response.flag){
