@@ -1,29 +1,42 @@
 package com.jzpz.domain;
 
-import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
+import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
+
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Created by weiQiang on 2016/10/7.
  */
 @Entity
-@Table(name = "users")
+@Table(name = "sys_user")
 @Data
 @RequiredArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Builder
 public class Users implements Serializable {
-    @Id
+    
+	private static final long serialVersionUID = -620221547485473029L;
+
+	@Id
+    @GeneratedValue
     private Integer id;
+
     private String userName;
+
     private String passWord;
-    private String role;
+
+    //@Column(name = "role_id")
+    private String roleId;
 
     private String realName;
 
@@ -33,4 +46,7 @@ public class Users implements Serializable {
 
     private String info;
 
+    private String lastLoginIp;
+
+    private Date lastLoginTime;
 }

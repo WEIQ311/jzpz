@@ -16,7 +16,10 @@ import java.util.Date;
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Builder
 public class Module implements Serializable{
-    @Id
+
+	private static final long serialVersionUID = -4245516930648433162L;
+
+	@Id
     @GeneratedValue
     private Long moduleId;
 

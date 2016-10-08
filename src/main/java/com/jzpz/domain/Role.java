@@ -19,8 +19,10 @@ import java.util.Date;
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Builder
 public class Role implements Serializable{
+   
+	private static final long serialVersionUID = 6567394002301532940L;
 
-    @Id
+	@Id
     @GeneratedValue
     private Long id;
 
