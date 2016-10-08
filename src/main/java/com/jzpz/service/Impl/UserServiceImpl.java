@@ -33,13 +33,13 @@ public class UserServiceImpl implements UserService,UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException(username + " not found");
         }
-        System.err.println(user.getRoleId() + "正在执行查询角色名称");
+        System.err.println(user.getRole() + "正在执行查询角色名称");
         return new UserDetails() {
             private static final long serialVersionUID = 3720901165271071386L;
             @Override
             public Collection<? extends GrantedAuthority> getAuthorities() {
                 List<SimpleGrantedAuthority> auths = new ArrayList<>();
-                auths.add(new SimpleGrantedAuthority(user.getRoleId()));
+                auths.add(new SimpleGrantedAuthority(user.getRole().toString()));
                 return auths;
             }
 

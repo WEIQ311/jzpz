@@ -6,6 +6,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 /**
  * Created by weiQiang on 2016/10/8.
  */
@@ -20,8 +22,8 @@ public class Module implements Serializable{
 	private static final long serialVersionUID = -4245516930648433162L;
 
 	@Id
-    @GeneratedValue
-    private Long moduleId;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer moduleId;
 
     private String moduleName;
 
@@ -30,7 +32,7 @@ public class Module implements Serializable{
     @Column(name = "module_role_id")
     private Role moduleRoles;
 
-    private String momment;
+    private String comments;
 
     @Column(name = "insert_user_id")
     private Users insertUser;

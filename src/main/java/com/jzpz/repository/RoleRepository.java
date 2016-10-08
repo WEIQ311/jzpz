@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * Created by weiQiang on 2016/10/8.
  */
-public interface RoleRepository extends JpaRepository<Role,Long> {
+public interface RoleRepository extends JpaRepository<Role,Integer> {
 }

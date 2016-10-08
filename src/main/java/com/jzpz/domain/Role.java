@@ -2,10 +2,7 @@ package com.jzpz.domain;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -23,8 +20,8 @@ public class Role implements Serializable{
 	private static final long serialVersionUID = 6567394002301532940L;
 
 	@Id
-    @GeneratedValue
-    private Long id;
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Integer id;
 
     private String roleName;
 
