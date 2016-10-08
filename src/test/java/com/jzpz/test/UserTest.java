@@ -12,6 +12,7 @@ public class UserTest {
         //bcrypt算法与md5/sha算法有一个很大的区别，每次生成的hash值都是不同的，
         // 这样暴力猜解起来或许要更困难一些。同时加密后的字符长度比较长，有60位，
         // 所以用户表中密码字段的长度，如果打算采用bcrypt加密存储，字段长度不得低于60.
+        //TODO　疑问每次提交时比较密码是如何匹配的
         String password = "bonc";
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(password);
