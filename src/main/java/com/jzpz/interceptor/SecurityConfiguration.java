@@ -75,10 +75,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         //auth.inMemoryAuthentication().withUser("admin").password("bonc").roles("USER","ADMIN");
-        auth.userDetailsService(userDetailsService);//.passwordEncoder(passwordEncoder());
-    }
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(4);
+        auth.userDetailsService(userDetailsService).passwordEncoder( new BCryptPasswordEncoder());
     }
 }

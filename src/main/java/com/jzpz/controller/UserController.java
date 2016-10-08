@@ -34,7 +34,7 @@ public class UserController {
     private UserService userService;
     //登录
     @RequestMapping(value = "login",method = RequestMethod.POST)
-    public ModelAndView /*Result*/ userLogin (HttpServletRequest request,String username,String password,Model model){
+    public ModelAndView /*Result*/ userLogin (HttpServletRequest request,Model model){
         try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             if (auth instanceof AnonymousAuthenticationToken) {
