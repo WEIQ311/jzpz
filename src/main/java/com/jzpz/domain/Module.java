@@ -12,7 +12,7 @@ import static javax.persistence.GenerationType.IDENTITY;
  * Created by weiQiang on 2016/10/8.
  */
 @Entity
-@Table(name = "module")
+@Table(name = "sys_module")
 @Data
 @RequiredArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PACKAGE)

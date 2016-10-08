@@ -38,7 +38,9 @@ public class Users implements Serializable {
      * 用户的权限
      */
     @Column(name = "role_id")
-    private String role;
+    private String roleId;
+
+    private String groupId;
 
     private String realName;
 

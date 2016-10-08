@@ -10,7 +10,7 @@ import java.util.Date;
  * 角色权限
  */
 @Entity
-@Table(name = "role")
+@Table(name = "sys_role")
 @Data
 @RequiredArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
