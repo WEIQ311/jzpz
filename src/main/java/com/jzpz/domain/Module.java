@@ -1,0 +1,41 @@
+package com.jzpz.domain;
+
+import lombok.*;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * Created by weiQiang on 2016/10/8.
+ */
+@Entity
+@Table(name = "module")
+@Data
+@RequiredArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+@Builder
+public class Module implements Serializable{
+    @Id
+    @GeneratedValue
+    private Long moduleId;
+
+    private String moduleName;
+
+    private String moduleUrl;
+
+    @Column(name = "module_role_id")
+    private Role moduleRoles;
+
+    private String momment;
+
+    @Column(name = "insert_user_id")
+    private Users insertUser;
+
+    private Date insertTime;
+
+    @Column(name = "update_user_id")
+    private Users updateUser;
+
+    private Date updateTime;
+}
