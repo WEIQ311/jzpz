@@ -31,6 +31,8 @@ public class SysController {
                     System.out.println(authortity[i]);
                 }
             }
+            System.out.println(request.getSession().getAttribute(UserController.USERSESSION_KEY));
+            System.out.println(request.getAttribute(UserController.USERSESSION_KEY));
         }catch (Exception e){
 
         }

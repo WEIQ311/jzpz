@@ -28,7 +28,7 @@ public class ModuleRoleFuc implements Serializable{
 
     private Module fucModuleId;
 
-    private Role fucRoleId;
+    private SysRole fucRoleId;
 
     private Group fucGroupId;
 

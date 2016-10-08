@@ -30,7 +30,7 @@ public class Module implements Serializable{
     private String moduleUrl;
 
     @Column(name = "module_role_id")
-    private Role moduleRoles;
+    private SysRole moduleRoles;
 
     private String comments;
 

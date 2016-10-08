@@ -37,8 +37,9 @@ public class Users implements Serializable {
     /**
      * 用户的权限
      */
-    @Column(name = "role_id")
-    private String roleId;
+    @JoinColumn(name = "role_id")
+    @ManyToOne
+    private SysRole roleId;
 
     private String groupId;
 

@@ -1,6 +1,9 @@
 package com.jzpz.service.Impl;
 
+import com.jzpz.controller.UserController;
+import com.jzpz.domain.SysRole;
 import com.jzpz.domain.Users;
+import com.jzpz.repository.SysRoleRepository;
 import com.jzpz.repository.UsersRepository;
 import com.jzpz.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,8 @@ import java.util.List;
 public class UserServiceImpl implements UserService,UserDetailsService {
     @Autowired
     private UsersRepository usersRepository;
+    @Autowired
+    private SysRoleRepository sysRoleRepository;
     @Override
     public Users getUserByname(String username) {
         return Users.builder().userName("admin").passWord("admin").build();
@@ -39,7 +44,7 @@ public class UserServiceImpl implements UserService,UserDetailsService {
             @Override
             public Collection<? extends GrantedAuthority> getAuthorities() {
                 List<SimpleGrantedAuthority> auths = new ArrayList<>();
-                auths.add(new SimpleGrantedAuthority(user.getRoleId().toString()));
+                auths.add(new SimpleGrantedAuthority(user.getRoleId().getRoleName()));
                 return auths;
             }
 

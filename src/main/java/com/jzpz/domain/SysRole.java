@@ -1,5 +1,6 @@
 package com.jzpz.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,7 +16,7 @@ import java.util.Date;
 @RequiredArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Builder
-public class Role implements Serializable{
+public class SysRole implements Serializable{
    
 	private static final long serialVersionUID = 6567394002301532940L;
 
@@ -27,10 +28,12 @@ public class Role implements Serializable{
 
     private String comment;
 
+    @ManyToOne
     private Users insertUser;
 
     private Date insertTime;
 
+    @ManyToOne
     private Users updateUser;
 
     private Date updateTime;

@@ -36,7 +36,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers(
                     HttpMethod.GET,
                     "/login.html",
-                    "/login.html",
                     "/*.js",
                     "/**/*.js",
                     "/**/*.woff2",
