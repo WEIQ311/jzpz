@@ -12,9 +12,19 @@ import org.springframework.scheduling.annotation.Scheduled;
 @EnableScheduling
 public class TestTask {
 
-    @Scheduled(cron = "0/10 * * * * ?") // 每10秒执行一次
+    @Scheduled(cron = "10 2 * * * ?") // 每10秒执行一次
     public void testTask(){
         System.out.println("我是定时任务里面的……"+DateUtils.getNow2String());
+        /*
+            我是定时任务里面的……2016-10-25 00:02:10
+            我是定时任务里面的……2016-10-25 01:02:10
+            我是定时任务里面的……2016-10-25 02:02:10
+            我是定时任务里面的……2016-10-25 03:02:10
+            我是定时任务里面的……2016-10-25 04:02:10
+            我是定时任务里面的……2016-10-25 05:02:10
+            我是定时任务里面的……2016-10-25 06:02:10
+            我是定时任务里面的……2016-10-25 07:02:10
+         */
     }
     /**
      * <p>cron表达式详解</p>
