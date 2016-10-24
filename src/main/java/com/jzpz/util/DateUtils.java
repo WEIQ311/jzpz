@@ -27,4 +27,8 @@ public class DateUtils {
 		}
 		return null;
 	}
+	public static String getNow2String (){
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return df.format(new Date());
+	}
 }
