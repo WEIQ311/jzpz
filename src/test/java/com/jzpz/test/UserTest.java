@@ -1,7 +1,13 @@
 package com.jzpz.test;
 
 import org.junit.Test;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by weiQiang on 2016/10/8.
@@ -19,5 +25,69 @@ public class UserTest {
         System.out.println(hashedPassword);
         System.out.println(hashedPassword.length());
         System.out.println("$2a$10$DhZBzfapM8CqY1I6gr6KSOiqTwKEhJbmYn5rSA3x6qZbV9E.Jnj.S".length());
+    }
+
+    @Test
+    public void test(){
+        List<Map<String,String>> listMap = getData();
+        String incomes = "user_id-user_name";
+        String spliteInfo = "-";
+        setMapByCondition(listMap,incomes,spliteInfo);
+    }
+
+    private void setMapByCondition(List<Map<String, String>> listMap, String incomes, String spliteInfo) {
+        String [] incomeValues = incomes.split(spliteInfo);
+        List<Map<String, String>> tempList = new ArrayList<>();
+        Map<String ,List<Map<String, String>>> serverMap = new HashMap<>();
+        for(Map<String, String> dataMap:listMap){
+
+            StringBuffer incomeKeyBf = new StringBuffer();
+            for(String income:incomeValues){
+                if(dataMap.containsKey(income)){
+                    incomeKeyBf.append(dataMap.get(income)+spliteInfo);
+                }
+            }
+            String incomeKey = incomeKeyBf.toString();
+            incomeKey = incomeKey.endsWith(spliteInfo)?incomeKey.substring(0,incomeKey.length()-spliteInfo.length()):incomeKey;
+            String [] incomeKeys = incomeKey.split(spliteInfo);
+            //处理tempList
+            for(int i = 0;i<incomeValues.length;i++){
+                //tempList = new ArrayList<>();
+                int j = 1;
+                for(Map tempMap:listMap){
+                    //incomeKeys的最后一个也满足
+                    if(tempMap.containsKey(incomeValues[i]) && tempMap.get(incomeValues[i]).equals(incomeKeys[i])&&!tempList.contains(tempMap)){
+                       System.out.println(incomeValues[i]+">>"+tempMap+"<<"+j);
+                        //if(j==incomeValues.length){
+                            tempList.add(tempMap);
+                      //  }
+                        j++;
+                    }
+                }
+            }
+            serverMap.put(incomeKey,tempList);
+
+        }
+        System.out.println(serverMap);
+    }
+
+    private List<Map<String,String>> getData (){
+        List<Map<String,String>> listMap = new ArrayList<>();
+        Map<String,String> map = new HashMap<>();
+        map.put("user_id","123");
+        map.put("user_name","123");
+        map.put("user_pwd","123");
+        listMap.add(map);
+        map = new HashMap<>();
+        map.put("user_id","234");
+        map.put("user_name","234");
+        map.put("user_pwd","234");
+        listMap.add(map);
+        map = new HashMap<>();
+        map.put("user_id","123");
+        map.put("user_name","123");
+        map.put("user_pwd","234");
+        listMap.add(map);
+        return listMap;
     }
 }
