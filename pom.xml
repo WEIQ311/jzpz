@@ -91,11 +91,11 @@
             <artifactId>angularjs</artifactId>
             <version>${angularjs.version}</version>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.webjars</groupId>
             <artifactId>angularjs</artifactId>
             <version>2.0.0-alpha.22</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
@@ -132,6 +132,7 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <configuration>
+                        <skipTests>true</skipTests>
                         <useSystemClassLoader>false</useSystemClassLoader>
                     </configuration>
                 </plugin>

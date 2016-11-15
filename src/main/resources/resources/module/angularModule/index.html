@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>angularJs模块化</title>
+    <script type="text/javascript" src="./../../head.js"></script>
+    <script type="text/javascript" src="./js/app.js"></script>
+    <script type="text/javascript" src="./js/services.js"></script>
+    <script type="text/javascript" src="./js/controllers.js"></script>
+    <script type="text/javascript" src="./js/filters.js"></script>
+    <script type="text/javascript" src="./js/directives.js"></script>
+</head>
+<body>
+<span style="font-family:SimSun;font-size:14px;"><div class="wrap">
+    <div class="header">
+      <div class="navbar navbar-inverse navbar-swapper">
+        <div class="navbar-inner">
+          <div class="container">
+            <a class="brand" href="#">JThink</a>
+            <ul class="menu nav pull-right">
+              <li><a href="#/login">login</a></li>
+              <li><a href="#/register">register</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div id="content" class="content container" ng-view></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <p>
+        version1.0
+      </p>
+    </div>
+  </div></span>
+</body>
+</html>
