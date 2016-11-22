@@ -9,16 +9,17 @@
 <body ng-app="uploadApp">
 <div ng-controller="uploadImg">
     <input type="file" file-model="uploadImg"/>
-
     <div class="col-md-12">
         <img ng-src="{{imageSrc}}" style="max-width:300px;max-height:300px;margin:0 auto;display:block;" />
     </div>
 
     <button class="btn btn-primary" ng-click="uploadImg()">上传</button>
+    <img ng-src="{{imgSrc}}">
 </div>
 <!--<form method="POST" enctype="multipart/form-data" action="/jzpz/">
     文件名：<input type="file" name="file"><br/> <br/>
     <input type="submit" value="上传">
 </form>-->
+
 </body>
 </html>

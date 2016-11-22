@@ -97,13 +97,13 @@ public class UserTest {
     @Test
     public void base64Test() {
         String strImg = GetImageStr();
-        System.out.println(strImg);
+        System.out.println(strImg.replace("\r","").replace("\n",""));
         //GenerateImage(strImg);
     }
 
     //图片转化成base64字符串
     public static String GetImageStr() {//将图片文件转化为字节数组字符串，并对其进行Base64编码处理
-        String imgFile = "d://123.png";//待处理的图片
+        String imgFile = "d://Video123.wmv";//待处理的图片
         InputStream in = null;
         byte[] data = null;
         //读取图片字节数组
