@@ -7,10 +7,7 @@ import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by weiQiang on 2016/10/8.
@@ -143,5 +140,30 @@ public class UserTest {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    @Test
+    public void testJava8(){
+        Arrays.asList( "a", "b", "d" ).forEach(e -> System.out.println( e ) );
+        System.out.println("----");
+        Arrays.asList( "a", "b", "d" ).forEach( e -> {
+            System.out.print( e );
+            System.out.print( e );
+        } );
+        System.out.println("+++");
+        String separator = ",";
+        Arrays.asList( "a", "b", "d" ).forEach(
+                ( String e ) -> System.out.print( e + separator ) );
+        System.out.println("))))))____");
+        final String separators = ",";
+        Arrays.asList( "a", "b", "d" ).forEach(
+                ( String e ) -> System.out.print( e + separators ) );
+
+        Arrays.asList( "a", "b", "d" ).sort( ( e1, e2 ) -> e1.compareTo( e2 ) );
+
+        Arrays.asList( "a", "b", "d" ).sort( ( e1, e2 ) -> {
+            int result = e1.compareTo( e2 );
+            return result;
+        } );
     }
 }
