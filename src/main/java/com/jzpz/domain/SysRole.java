@@ -1,5 +1,6 @@
 package com.jzpz.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ import java.util.Date;
 @Table(name = "sys_role")
 @Data
 @RequiredArgsConstructor
+@EqualsAndHashCode(callSuper = false, of = "id")
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Builder
 public class SysRole implements Serializable{
@@ -27,13 +29,7 @@ public class SysRole implements Serializable{
 
     private String comment;
 
-    @ManyToOne
-    private Users insertUser;
-
     private Date insertTime;
-
-    @ManyToOne
-    private Users updateUser;
 
     private Date updateTime;
 

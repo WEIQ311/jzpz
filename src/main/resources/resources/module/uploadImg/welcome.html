@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="./../../head.js"></script>
+    <title>表格编辑测试</title>
+    <!--
+        因为表格样式用到了bootstrap所以首先需要引入jquery.js、bootstrap.js和bootstrap.css
+        然后引入angular.js
+        按照js中的代码就可以实现使用angular技术删除修改表格了
+        代码中注释应该都比较完整，如果有不懂的或者建议欢迎留言讨论
+
+        后面会继续更新，使用angular中的$http 服务向服务器请求信息从后台获取数据，这里先将数据自定义是为了弄明白angularJS的作用域，指令，控制器和视图
+
+    -->
+    <script>
+
+        //定义模块
+        var ang = angular.module('module-1', []);
+
+        //定义控制器
+        ang.controller('myCon', function ($scope) {
+
+            //$scope表示作用域对象，每个控制器都有自己的作用域对象
+            $scope.arrs = [
+                {"productid": "FI-SW-01", "productname": "Koi"},
+                {"productid": "K9-DL-01", "productname": "Dalmation"},
+                {"productid": "RP-SN-01", "productname": "Rattlesnake"},
+                {"productid": "RP-LI-02", "productname": "Iguana"},
+                {"productid": "FL-DSH-01", "productname": "Manx"},
+                {"productid": "FL-DLH-02", "productname": "Persian"},
+                {"productid": "AV-CB-01", "productname": "Amazon Parrot"}
+            ];
+
+            //定义一个空对象 , 用于更新和保存数据时临时存储
+            $scope.prod = {};
+
+            //定义一个单击删除按钮时触发的事件，用于删除选中行
+            $scope.delete = function ($index) {
+
+                if ($index >= 0) {
+                    if (confirm("是否删除" + $scope.arrs[$index].productid + "商品")) {
+                        $scope.arrs.splice($index, 1);
+                    }
+                }
+            };
+
+            //定义一个全局变量idx  , 用于存储选中行的索引，方便执行保存操作时保存数据
+            var idx = -1;
+
+            //定义一个单击修改按钮时触发的事件，用于单击后弹出模块窗口用于修改数据
+            $scope.updata = function ($index) {
+
+                //显示bootstrap中的模块窗口
+                $('#modal-1').modal('show');
+
+                //将选中行的数据绑定到临时对象prod中，在下面的模态窗口中展示出来
+                $scope.prod.productid = $scope.arrs[$index].productid;
+                $scope.prod.productname = $scope.arrs[$index].productname;
+                //选中行的索引赋值给全局变量idx
+                idx = $index;
+            };
+
+            //定义一个单机保存按钮时触发的事件,
+            $scope.save = function () {
+                //将修改后的值赋给数组
+                $scope.arrs[idx].productid = $scope.prod.productid;
+                $scope.arrs[idx].productname = $scope.prod.productname;
+                //关闭模块窗口
+                $('#modal-1').modal('hide');
+            }
+
+        })
+
+    </script>
+</head>
+
+<body ng-app="module-1">
+
+<div ng-controller="myCon">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <table class="table">
+                    <tr ng-repeat=" ar in arrs">
+                        <td>{{$index}}</td>
+                        <td ng-repeat="a in ar"> {{a}}</td>
+                        <td><a href="javascript:void(0)" class="btn btn-primary" ng-click="updata($index)">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                ng-click="delete($index)" href="javascript:void(0)" class="btn btn-danger">删除</a></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="modal" id="modal-1">
+
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                        <h3 class="modal-title">修改商品</h3>
+                    </div>
+
+                    <div class="modal-body">
+                        <div>商品编号</div>
+                        <input ng-model="prod.productid" value="{{prod.productid}}">
+                        <div>商品名称</div>
+                        <input ng-model="prod.productname" value="{{prod.productname}}">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button class="btn btn-success" ng-click="save()">确定</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<p></p>
+
+
+</body>
+</html>
