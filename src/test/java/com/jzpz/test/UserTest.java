@@ -166,4 +166,26 @@ public class UserTest {
             return result;
         } );
     }
+
+    @Test
+    public void test26(){
+        for (char i = 'a'; i <='z' ; i++) {
+            System.out.print(i);
+        }
+        System.out.println();
+        for (char i = 'A'; i <='Z' ; i++) {
+            System.out.print(i);
+        }
+        System.out.println();
+    }
+
+    @Test
+    public void chengfa(){
+        for(int i =1;i<10;i++){
+            for (int j =1 ;j<=i; j++) {
+                System.out.print(j+"X"+i+"="+i*j+"\t");
+            }
+            System.out.println();
+        }
+    }
 }

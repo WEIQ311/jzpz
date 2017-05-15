@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="jsoneditor.css"/>
+    <link rel="icon" href="logo-small.png"/>
+    <title>JSON编辑器</title>
+    <style>
+        body {
+          padding: 0 70px;
+        }
+        #json {
+          margin: 10px 10px 10px 32px;
+          width: 50%;
+          min-height: 70px;
+        }
+        h1 {
+          font-family: Arial;
+          color: #EBBC6E;
+          text-align: center;
+          text-shadow: 1px 1px 1px black;
+          border-bottom: 1px solid gray;
+          padding-bottom: 50px;
+          width: 500px;
+          margin: 20px auto;
+        }
+        h1 img {
+          float: left;
+        }
+        h1 b {
+          color: black;
+          font-weight: normal;
+          display: block;
+          font-size: 12px;
+          text-shadow: none;
+        }
+
+        #legend {
+          display: inline;
+          margin-left: 30px;
+        }
+        #legend h2 {
+           display: inline;
+           font-size: 18px;
+           margin-right: 20px;
+        }
+        #legend a {
+          color: white;
+          margin-right: 20px;
+        }
+        #legend span {
+          padding: 2px 4px;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          border-radius: 5px;
+          color: white;
+          font-weight: bold;
+          text-shadow: 1px 1px 1px black;
+          background-color: black;
+        }
+        #legend .string  { background-color: #009408; }
+        #legend .array   { background-color: #2D5B89; }
+        #legend .object  { background-color: #E17000; }
+        #legend .number  { background-color: #497B8D; }
+        #legend .boolean { background-color: #B1C639; }
+        #legend .null    { background-color: #B1C639; }
+        
+        #expander {
+          cursor: pointer;
+          margin-right: 20px;
+        }
+
+        label[for="json"] {
+          margin-left: 30px;
+          display: block;
+        }
+        #json-note {
+          margin-left: 30px;
+          font-size: 12px;
+        }
+
+        .addthis_toolbox {
+          position: relative;
+          top: -10px;
+          margin-left: 30px;
+        }
+
+        #disqus_thread {
+          margin-top: 50px;
+          padding-top: 20px;
+          padding-bottom: 20px;
+          border-top: 1px solid gray;
+          border-bottom: 1px solid gray;
+        }
+    </style>
+</head>
+
+<body> 
+    <div id="legend">
+        <span id="expander">Expand all</span>
+        <span class="array">array</span>
+        <span class="object">object</span>
+        <span class="string">string</span>
+        <span class="number">number</span>
+        <span class="boolean">boolean</span>
+        <span class="null">null</span>
+        <span>通过删除属性名移除项目。</span>
+    </div>
+    <pre id="path"></pre>
+    <div id="editor" class="json-editor"></div>
+    <label for="json">你可以粘贴JSON直接在这里</label>
+    <p id="json-note">你可以在下面的文本框中直接编辑你的JSON。当您离开字段时，JSON查看器将得到更新。</p>
+    <textarea id="json"></textarea><br/>
+    <script src="json2.js"></script>
+    <script src="jquery.min.js"></script>
+    <script src="jquery.jsoneditor.js"></script>
+    <script src="jsoneditor.js"></script>
+</body>
+</html>
