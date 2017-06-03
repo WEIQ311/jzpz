@@ -1,5 +1,6 @@
 package com.jzpz.test;
 
+import com.jzpz.util.JsonValidator;
 import org.junit.Test;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -187,5 +188,11 @@ public class UserTest {
             }
             System.out.println();
         }
+    }
+
+    @Test
+    public void jsonValidatorTest(){
+        String jsonStr = "{\"website\":\"oschina.net\"}";
+        System.out.println(jsonStr + ":" + new JsonValidator().validate(jsonStr));
     }
 }
