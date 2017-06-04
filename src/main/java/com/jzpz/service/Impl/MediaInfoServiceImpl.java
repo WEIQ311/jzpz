@@ -8,6 +8,8 @@ import com.jzpz.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2016/11/21.
  */
@@ -21,12 +23,18 @@ public class MediaInfoServiceImpl implements MediaInfoService {
     private UserService userService;
     @Override
     public Result saveMedia(MediaInfo mediaInfo) {
-        //mediaInfoRepository.save(mediaInfo);
-        return null;
+        mediaInfo = mediaInfoRepository.save(mediaInfo);
+        return Result.builder().message(mediaInfo.getMediaInfo()).flag(true).build();
     }
 
     @Override
     public String findMediaById(Integer mediaId) {
         return mediaInfoRepository.findOne(mediaId).getMediaInfo();
+    }
+
+    @Override
+    public Result getAllUploadImg() {
+        List<MediaInfo> mediaInfos = mediaInfoRepository.findAll();
+        return Result.builder().data(mediaInfos).flag(true).build();
     }
 }

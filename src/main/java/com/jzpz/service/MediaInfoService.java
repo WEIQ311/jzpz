@@ -12,4 +12,6 @@ public interface MediaInfoService {
 
 
     String findMediaById(Integer mediaId);
+
+    Result getAllUploadImg();
 }

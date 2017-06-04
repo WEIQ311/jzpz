@@ -52,7 +52,12 @@ public class MediaInfoController {
     }
 
     @RequestMapping(value = "findOne",method = RequestMethod.GET)
-    public String getMediaById(Integer mediaId){
-        return "data:image/jpeg;base64,"+mediaInfoService.findMediaById(mediaId).replace("\r","").replace("\n","");
+    public Result getMediaById(Integer mediaId){
+        return Result.builder().flag(true).message(mediaInfoService.findMediaById(mediaId)).build();
+    }
+
+    @RequestMapping(value = "getAll",method = RequestMethod.GET)
+    public Result getAllUploadImg(){
+        return mediaInfoService.getAllUploadImg();
     }
 }
