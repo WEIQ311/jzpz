@@ -4,19 +4,48 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script type="text/javascript" src="./../../head.js"></script>
     <script type="text/javascript" src="./../../js/uploadFile.js"></script>
+    <link href="./../../css/uploadImg.css" rel="stylesheet">
+    <script>
+        $(function () {
+            $('#myModalShowMsg').modal({
+                backdrop: 'static',
+                keyboard:false,
+                show:false
+            });
+        });
+    </script>
     <title>文件上传</title>
 </head>
 <body ng-app="uploadApp">
 <div ng-controller="uploadImg">
-    <input type="file" file-model="uploadImg"/>
-    <div class="col-md-12">
-        <img ng-src="{{imageSrc}}" style="max-width:300px;max-height:300px;margin:0 auto;display:block;" />
+        <input type="file" file-model="uploadImg" class="col-sm-3 file"/>
+        <button class="btn btn-primary col-sm-1" ng-click="uploadImg()">上传</button>
+    <br>
+    <hr>
+    <div id="showImg">
+        <div class="showImg-show">
+            <img ng-src="{{showImage.mediaInfo}}" title="{{showImage.mediaName}}">
+        </div>
+        <div class="showImg-list">
+            <ul ng-repeat="img in uploadImgs">
+                <li ng-click="showImg(img)"><img ng-src="{{img.mediaInfo}}" title="{{img.mediaName}}" ng-class="{clickImge:clickImge(img.mediaId)}" ></li>
+            </ul>
+        </div>
     </div>
-
-    <button class="btn btn-primary" ng-click="uploadImg()">上传</button>
-    <div class="showImg">
-        <div ng-repeat="img in uploadImgs">
-            <div><span>{{img.mediaName}}</span><img ng-src="{{img.mediaInfo}}"></div>
+    <div class="modal fade" id="myModalShowMsg" tabindex="-1" role="dialog" aria-labelledby="myModalShowMagTitle" aria-hidden="true"  toggle="modal" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalShowMagTitle"><span class="glyphicon glyphicon-warning-sign" style="color:#f9d91d"></span> 提示</h4>
+                </div>
+                <div class="modal-body">
+                    <span class="text-danger" ng-bind="errorMsg"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -24,6 +53,5 @@
     文件名：<input type="file" name="file"><br/> <br/>
     <input type="submit" value="上传">
 </form>-->
-
 </body>
 </html>

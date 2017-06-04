@@ -5,6 +5,8 @@ import com.jzpz.domain.Result;
 import com.jzpz.domain.Users;
 import com.jzpz.service.MediaInfoService;
 import com.jzpz.util.JzpzUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,31 +25,25 @@ import java.util.Date;
 @RequestMapping(value = "upload")
 public class MediaInfoController {
 
+    private Logger log = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private MediaInfoService mediaInfoService;
 
     @RequestMapping(value = "img",method = RequestMethod.POST)
     public Result uploadImg(MultipartFile file){
-       // MultipartFile file = null;
+       if(null==file){
+           return Result.builder().flag(false).message("上传文件为空").build();
+       }
         String fileStr = "";
         try {
-           // file = (MultipartFile) new FileInputStream(files);
             fileStr = JzpzUtil.getBase64(file.getInputStream());
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("上传文件出错:"+e.getMessage());
+            return Result.builder().flag(false).message("上传文件出错:"+e.getMessage()).build();
         }
+        log.info("上传图片,文件名:"+file.getOriginalFilename()+"大小:"+file.getSize()+"文件类型:"+file.getContentType());
         Users users = Users.builder().id(1).build();
-       // System.out.println(files);
-        System.out.println(file.getName());
-        System.out.println(file.getOriginalFilename());
-        System.out.println(file.getSize());
-        System.out.println(file.getContentType());
         MediaInfo mediaInfo = MediaInfo.builder().mediaInfo("data:"+file.getContentType()+";base64,"+fileStr).mediaName(file.getOriginalFilename()).insertUser(users).updateUser(users).insertTime(new Date()).updateTime(new Date()).build();
-        //System.out.println(fileStr);
-        //data:image/jpeg;base64,
-        //data:file.getContentType();base64,
-        //video/x-ms-wmv
-        //video/mp4
         return mediaInfoService.saveMedia(mediaInfo);
     }
 

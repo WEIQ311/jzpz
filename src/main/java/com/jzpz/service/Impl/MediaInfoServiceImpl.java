@@ -21,10 +21,11 @@ public class MediaInfoServiceImpl implements MediaInfoService {
 
     @Autowired
     private UserService userService;
+
     @Override
     public Result saveMedia(MediaInfo mediaInfo) {
-        mediaInfo = mediaInfoRepository.save(mediaInfo);
-        return Result.builder().message(mediaInfo.getMediaInfo()).flag(true).build();
+        mediaInfoRepository.save(mediaInfo);
+        return Result.builder().message("上传成功!").flag(true).build();
     }
 
     @Override
