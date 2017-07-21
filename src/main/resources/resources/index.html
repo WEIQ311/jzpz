@@ -66,9 +66,21 @@
                         <span class="selected"></span>
                     </a>
                 </li>
-                <li>
-                    <a href="javascript:_openPage('./module/jsonEditor/index.html')" class="glyphicon glyphicon-briefcase" target="_Blank">JSON编辑器 <span class="selected"> </span></a>
-                 </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle glyphicon glyphicon-list-alt" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 更多<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="javascript:_openPage('./module/jsonEditor/index.html')" class="glyphicon glyphicon-briefcase" target="_Blank"> JSON编辑器 <span class="selected"> </span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:_openPage('./module/specially/index.html')" class="glyphicon glyphicon-time" target="_Blank"> 滑动时钟 <span class="selected"> </span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:_openPage('./module/wheelmenu/index.html')" class="glyphicon glyphicon-indent-left" target="_Blank"> 多样菜单 <span class="selected"> </span></a>
+                        </li>
+                    </ul>
+                </li>
+
             </ul>
             <ul class="nav navbar-nav navbar-right" ng-app="indexApp" ng-controller="indexCtr">
                 <li class="dropdown">

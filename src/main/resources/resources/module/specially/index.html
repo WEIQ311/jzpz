@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>滑动时钟</title>
+    <link rel="stylesheet" href="../../css/specially.css">
+</head>
+<body>
+<div class="column" style="transform: translateY(calc((50vh + -172px) - 43px));">
+    <div class="num far">0</div>
+    <div class="num close">1</div>
+    <div class="num visible">2</div>
+</div>
+<div class="column" style="transform: translateY(calc((50vh + -86px) - 43px));">
+    <div class="num close">0</div>
+    <div class="num visible">1</div>
+    <div class="num close">2</div>
+    <div class="num far">3</div>
+    <div class="num far">4</div>
+    <div class="num distant">5</div>
+    <div class="num distant">6</div>
+    <div class="num ">7</div>
+    <div class="num ">8</div>
+    <div class="num ">9</div>
+</div>
+<div class="colon"></div>
+<div class="column" style="transform: translateY(calc((50vh + -172px) - 43px));">
+    <div class="num far">0</div>
+    <div class="num close">1</div>
+    <div class="num visible">2</div>
+    <div class="num close">3</div>
+    <div class="num far">4</div>
+    <div class="num far">5</div>
+</div>
+<div class="column" style="transform: translateY(calc((50vh + -516px) - 43px));">
+    <div class="num ">0</div>
+    <div class="num distant">1</div>
+    <div class="num distant">2</div>
+    <div class="num far">3</div>
+    <div class="num far">4</div>
+    <div class="num close">5</div>
+    <div class="num visible">6</div>
+    <div class="num close">7</div>
+    <div class="num far">8</div>
+    <div class="num far">9</div>
+</div>
+<div class="colon"></div>
+<div class="column" style="transform: translateY(calc((50vh + 0px) - 43px));">
+    <div class="num visible">0</div>
+    <div class="num close">1</div>
+    <div class="num far">2</div>
+    <div class="num far">3</div>
+    <div class="num distant">4</div>
+    <div class="num distant">5</div>
+</div>
+<div class="column" style="transform: translateY(calc((50vh + -172px) - 43px));">
+    <div class="num far">0</div>
+    <div class="num close">1</div>
+    <div class="num visible">2</div>
+    <div class="num close">3</div>
+    <div class="num far">4</div>
+    <div class="num far">5</div>
+    <div class="num distant">6</div>
+    <div class="num distant">7</div>
+    <div class="num ">8</div>
+    <div class="num ">9</div>
+</div>
+<script>
+    'use strict';
+    var size = 86;
+    var columns = Array.from(document.getElementsByClassName('column'));
+    var d = undefined,
+        c = undefined;
+    var classList = ['visible', 'close', 'far', 'far', 'distant', 'distant'];
+    var use24HourClock = true;
+
+    function padClock(p, n) {
+        return p + ('0' + n).slice(-2);
+    }
+
+    function getClock() {
+        d = new Date();
+        return [use24HourClock ? d.getHours() : d.getHours() % 12 || 12, d.getMinutes(), d.getSeconds()].reduce(padClock, '');
+    }
+
+    function getClass(n, i2) {
+        return classList.find(function (class_, classIndex) {
+                return i2 - classIndex === n || i2 + classIndex === n;
+            }) || '';
+    }
+
+    var loop = setInterval(function () {
+        c = getClock();
+
+        columns.forEach(function (ele, i) {
+            var n = +c[i];
+            var offset = -n * size;
+            ele.style.transform = 'translateY(calc(50vh + ' + offset + 'px - ' + size / 2 + 'px))';
+            Array.from(ele.children).forEach(function (ele2, i2) {
+                ele2.className = 'num ' + getClass(n, i2);
+            });
+        });
+    }, 200 + Math.E * 10);
+</script>
+</body>
+</html>

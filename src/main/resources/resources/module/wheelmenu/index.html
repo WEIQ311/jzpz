@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>花样菜单</title>
+    <link rel="stylesheet" href="../../css/wheelmenuHtml.css">
+    <link rel="stylesheet" href="../../css/wheelmenu.css">
+    <script type="text/javascript" src="../../js/jquery.js"></script>
+    <script type="text/javascript" src="../../js/jquery.wheelmenu.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".wheel-button").wheelmenu({
+                trigger: "hover",
+                animation: "fly",
+                animationSpeed: "fast"
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="main">
+        <a href="#wheel" class="wheel-button">
+            <span>+</span>
+        </a>
+        <div class="pointer">Hover me</div>
+        <ul id="wheel" data-angle="all">
+            <li class="item"><a href="#home">A</a></li>
+            <li class="item"><a href="#home">B</a></li>
+            <li class="item"><a href="#home">C</a></li>
+            <li class="item"><a href="#home">D</a></li>
+            <li class="item"><a href="#home">E</a></li>
+            <li class="item"><a href="#home">F</a></li>
+            <li class="item"><a href="#home">G</a></li>
+            <li class="item"><a href="#home">H</a></li>
+            <li class="item"><a href="#home">I</a></li>
+            <li class="item"><a href="#home">J</a></li>
+        </ul>
+        <a href="#wheel2" class="wheel-button ne">
+            <span>+</span>
+        </a>
+        <ul id="wheel2" data-angle="NE" class="wheel">
+            <li class="item"><a href="#home">A</a></li>
+            <li class="item"><a href="#home">B</a></li>
+            <li class="item"><a href="#home">C</a></li>
+            <li class="item"><a href="#home">D</a></li>
+        </ul>
+
+        <a href="#wheel3" class="wheel-button nw">
+            <span>+</span>
+        </a>
+        <ul id="wheel3" data-angle="NW" class="wheel">
+            <li class="item"><a href="#home">A</a></li>
+            <li class="item"><a href="#home">B</a></li>
+            <li class="item"><a href="#home">C</a></li>
+            <li class="item"><a href="#home">D</a></li>
+            <li class="item"><a href="#home">E</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
