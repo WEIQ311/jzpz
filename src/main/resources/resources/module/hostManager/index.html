@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主机管理</title>
+    <script type="text/javascript" src="./../../head.js"></script>
+    <script type="text/javascript" src="./../../js/batchHost.js"></script>
+    <script>
+        $(function () {
+            $('#errorMessageWin').modal({
+                backdrop: true,
+                keyboard: false,
+                show: false
+            });
+            $('#showBatchHostWin').modal({
+                backdrop: 'static',
+                keyboard: false,
+                show: false
+            });
+        });
+    </script>
+    <style>
+        th, td {
+            text-align: center;
+            vertical-align: middle !important;
+        }
+    </style>
+</head>
+<body>
+<div class="container" style="margin-top: 30px;" ng-app="batchHostApp" ng-controller="batchHostCtr">
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <lable for="ip" class="control-label col-sm-1">主机ip：</lable>
+            <div class="col-sm-3">
+                <input type="text" id="ip" class="form-control" ng-model="hostIp" placeholder="请输入ip">
+            </div>
+            <lable for="host" class="control-label col-sm-1">域名：</lable>
+            <div class="col-sm-4">
+                <input type="text" id="host" class="form-control" ng-model="hostName" placeholder="请输入域名">
+            </div>
+            <div class="col-sm-3">
+                <button type="button" class="btn btn-info" ng-click="searchHost()">提交</button>
+                <button type="button" class="btn btn-primary" ng-click="resetHost()">重置</button>
+                <button type="button" class="btn btn-warning" ng-click="showBatchHost()">批量增加</button>
+            </div>
+        </div>
+    </form>
+    <div class="table-responsive">
+        <table class="table table-bordered table-condensed table-hover">
+            <colgroup>
+                <col style="width: 4%">
+                <col style="width: 10%">
+                <col style="width: 10%">
+                <col style="width: 80px;">
+                <col style="width: 80px;">
+                <col style="width: 100px;">
+                <col style="width: 100px;">
+                <col style="width: 60px;">
+                <col>
+                <col width="7%">
+            </colgroup>
+            <thead>
+            <tr class="info">
+                <th>序号</th>
+                <th>主机ip</th>
+                <th>主机名</th>
+                <th>是否ping通</th>
+                <th>延迟</th>
+                <th>用户名</th>
+                <th>密码</th>
+                <th>端口</th>
+                <th>备注</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="hostInfo in hostList" ng-class="{success:isEven($index+1)}">
+                <td>{{$index+1}}</td>
+                <td><span ng-model="hostInfo.hostIp"></span></td>
+                <td><span ng-model="hostInfo.hostName"></span></td>
+                <td><span ng-model="hostInfo.ifPing"></span></td>
+                <td><span ng-model="hostInfo.delay"></span></td>
+                <td><span ng-model="hostInfo.userName"></span></td>
+                <td><span ng-model="hostInfo.passWord"></span></td>
+                <td><span ng-model="hostInfo.port"></span></td>
+                <td><span ng-model="hostInfo.remark"></span></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal fade" id="showBatchHostWin" tabindex="-1" role="dialog" aria-labelledby="batchHostLabel"
+         aria-hidden="true">
+        <div class="modal-dialog  modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="batchHostLabel">批量增加主机</h4>
+                </div>
+                <div class="modal-body batchHostCls">
+                    <div class="row">
+                        <lable for="hostIp" class="control-label col-sm-1">主机ip：</lable>
+                        <div class="col-sm-3">
+                            <input type="text" id="hostIp" class="form-control" ng-model="ip" placeholder="例如:190.168">
+                        </div>
+                        <lable for="hostNum1" class="control-label col-sm-1">第三段：</lable>
+                        <div class="col-sm-3">
+                            <input type="text" id="hostNum1" class="form-control" ng-model="num1"
+                                   placeholder="例如::168或168-190">
+                        </div>
+                        <lable for="hostNum2" class="control-label col-sm-1">第四段：</lable>
+                        <div class="col-sm-3">
+                            <input type="text" id="hostNum2" class="form-control" ng-model="num2"
+                                   placeholder="例如:168或1-154">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <lable for="hostName" class="control-label col-sm-1">域名1：</lable>
+                        <div class="col-sm-5">
+                            <input type="text" id="hostName" class="form-control" ng-model="name1" placeholder="请输入域名1">
+                        </div>
+                        <lable for="hostName1" class="control-label col-sm-1">域名2：</lable>
+                        <div class="col-sm-5">
+                            <input type="text" id="hostName2" class="form-control" ng-model="name2"
+                                   placeholder="请输入域名2">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <lable for="userName" class="control-label col-sm-1">用户名：</lable>
+                        <div class="col-sm-3">
+                            <input type="text" id="userName" class="form-control" ng-model="userName"
+                                   placeholder="请输入用户名">
+                        </div>
+                        <lable for="passWord" class="control-label col-sm-1">密码：</lable>
+                        <div class="col-sm-3">
+                            <input type="text" id="passWord" class="form-control" ng-model="passWord"
+                                   placeholder="请输入密码">
+                        </div>
+                        <lable for="hostPort" class="control-label col-sm-1">端口：</lable>
+                        <div class="col-sm-3">
+                            <input type="text" id="hostPort" class="form-control" ng-model="port" value="22"
+                                   placeholder="请输入端口号">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <lable for="hostRemark" class="control-label col-sm-1">备注：</lable>
+                        <div class="col-sm-11">
+                            <textarea id="hostRemark" rows="3" class="form-control" ng-model="remark"
+                                      placeholder="请输入域名1"></textarea>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="showPreview()">
+                        <table class="table col-sm-10" style="margin-top:20px;padding: 10px;">
+                            <colgroup>
+                                <col style="width: 6%">
+                                <col >
+                                <col >
+                            </colgroup>
+                            <thead>
+                                <tr class="success">
+                                    <th>序号</th>
+                                    <th>主机ip</th>
+                                    <th>主机名</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="hostInfo in preHostList" ng-class="{success:isEven($index+1)}">
+                                    <td>{{$index+1}}</td>
+                                    <td><span ng-bind="hostInfo.hostIp"></span></td>
+                                    <td><span ng-bind="hostInfo.hostName"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" ng-click="previewHost()">预览</button>
+                    <button type="button" class="btn btn-success" ng-click="batchHost(false)">保存</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--提示信息-->
+    <div class="modal fade" id="errorMessageWin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <span style="color: #de1d08;font-weight: bolder;" ng-bind="errorMessage"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

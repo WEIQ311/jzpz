@@ -8,3 +8,7 @@ document.write('<script type="text/javascript" src="'+content+'webjars/angularjs
 document.write('<script type="text/javascript" src="'+content+'webjars/angularjs/1.5.8/angular-animate.js"></script>');
 document.write('<script type="text/javascript" src="'+content+'webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>');
 document.write('<link  rel="stylesheet" type="text/css" href="'+content+'webjars/bootstrap/3.3.6/css/bootstrap.css">');
+
+var contentType = {
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
