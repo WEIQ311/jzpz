@@ -27,6 +27,7 @@
         <angularjs.version>1.5.8</angularjs.version>
         <bootstrap.version>3.3.6</bootstrap.version>
         <security-version>1.4.0.RELEASE</security-version>
+        <jsoup.version>1.10.3</jsoup.version>
     </properties>
     <dependencies>
         <dependency>
@@ -127,6 +128,38 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${jsoup.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>
+                poi
+            </artifactId>
+            <version>3.10-beta2</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.10-beta2</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml-schemas</artifactId>
+            <version>3.10-beta2</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-scratchpad</artifactId>
+            <version>3.0.2-FINAL</version>
         </dependency>
     </dependencies>
     <build>

@@ -100,13 +100,15 @@ public class CreateTableImpl implements CreateTableService {
             e.printStackTrace();
         }finally{
             try{
-                if(stmt!=null)
+                if(stmt!=null) {
                     conn.close();
+                }
             }catch(SQLException se){
             }// do nothing
             try{
-                if(conn!=null)
+                if(conn!=null) {
                     conn.close();
+                }
             }catch(SQLException se){
                 se.printStackTrace();
             }
