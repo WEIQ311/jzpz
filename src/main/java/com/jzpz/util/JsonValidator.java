@@ -30,7 +30,9 @@ public class JsonValidator {
     }
 
     private boolean valid(String input) {
-        if ("".equals(input)) return true;
+        if ("".equals(input)) {
+            return true;
+        }
 
         boolean ret = true;
         it = new StringCharacterIterator(input);
@@ -55,7 +57,9 @@ public class JsonValidator {
     private boolean literal(String text) {
         CharacterIterator ci = new StringCharacterIterator(text);
         char t = ci.first();
-        if (c != t) return false;
+        if (c != t) {
+            return false;
+        }
 
         int start = col;
         boolean ret = true;
@@ -66,7 +70,9 @@ public class JsonValidator {
             }
         }
         nextCharacter();
-        if (!ret) error("literal " + text, start);
+        if (!ret) {
+            error("literal " + text, start);
+        }
         return ret;
     }
 
@@ -79,7 +85,9 @@ public class JsonValidator {
     }
 
     private boolean aggregate(char entryCharacter, char exitCharacter, boolean prefix) {
-        if (c != entryCharacter) return false;
+        if (c != entryCharacter) {
+            return false;
+        }
         nextCharacter();
         skipWhiteSpace();
         if (c == exitCharacter) {
@@ -90,9 +98,13 @@ public class JsonValidator {
         for (; ; ) {
             if (prefix) {
                 int start = col;
-                if (!string()) return error("string", start);
+                if (!string()) {
+                    return error("string", start);
+                }
                 skipWhiteSpace();
-                if (c != ':') return error("colon", col);
+                if (c != ':') {
+                    return error("colon", col);
+                }
                 nextCharacter();
                 skipWhiteSpace();
             }
@@ -116,22 +128,28 @@ public class JsonValidator {
     }
 
     private boolean number() {
-        if (!Character.isDigit(c) && c != '-') return false;
+        if (!Character.isDigit(c) && c != '-') {
+            return false;
+        }
         int start = col;
-        if (c == '-') nextCharacter();
+        if (c == '-') {
+            nextCharacter();
+        }
         if (c == '0') {
             nextCharacter();
         } else if (Character.isDigit(c)) {
-            while (Character.isDigit(c))
+            while (Character.isDigit(c)) {
                 nextCharacter();
+            }
         } else {
             return error("number", start);
         }
         if (c == '.') {
             nextCharacter();
             if (Character.isDigit(c)) {
-                while (Character.isDigit(c))
+                while (Character.isDigit(c)) {
                     nextCharacter();
+                }
             } else {
                 return error("number", start);
             }
@@ -142,8 +160,9 @@ public class JsonValidator {
                 nextCharacter();
             }
             if (Character.isDigit(c)) {
-                while (Character.isDigit(c))
+                while (Character.isDigit(c)) {
                     nextCharacter();
+                }
             } else {
                 return error("number", start);
             }
@@ -152,7 +171,9 @@ public class JsonValidator {
     }
 
     private boolean string() {
-        if (c != '"') return false;
+        if (c != '"') {
+            return false;
+        }
 
         int start = col;
         boolean escaped = false;
