@@ -234,9 +234,8 @@ public class JsonUtils {
 			
 			@Override
 			public Object processObjectValue(String key, Object value, JsonConfig arg2) {
-				if(value == null) {
-                    return "";
-                }
+				if(value == null) 
+					return "";
 				if(value instanceof Date) {
 					String string = new SimpleDateFormat(df).format((Date)value);
 					return string;

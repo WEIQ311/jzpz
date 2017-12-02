@@ -3,7 +3,6 @@ package com.jzpz.controller;
 import com.jzpz.domain.Result;
 import com.jzpz.domain.Users;
 import com.jzpz.service.UserService;
-import com.jzpz.util.JzpzUtil;
 import com.jzpz.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -37,7 +36,6 @@ public class UserController {
     @RequestMapping(value = "login",method = RequestMethod.POST)
     public ModelAndView /*Result*/ userLogin (HttpServletRequest request,Model model){
         try {
-            System.out.println("请求ip:"+Utils.getIpAddress(request));
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             if (auth instanceof AnonymousAuthenticationToken) {
                 return new ModelAndView("/login.html"); //Result.builder().flag(false).message("用户不存在或密码错误").build();
