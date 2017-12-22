@@ -3,9 +3,13 @@ package com.jzpz.service;
 import com.jzpz.domain.HostConfig;
 import com.jzpz.domain.Result;
 
+/**
+ * @author weiQiang
+ */
 public interface HostInfoService {
     /**
      * 搜索主机
+     *
      * @param hostIp
      * @param hostName
      * @return
@@ -14,6 +18,7 @@ public interface HostInfoService {
 
     /**
      * 批量增加主机
+     *
      * @param hostConfig
      * @param preview
      * @return

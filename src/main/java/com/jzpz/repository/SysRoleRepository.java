@@ -4,8 +4,16 @@ import com.jzpz.domain.SysRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Created by weiQiang on 2016/10/8.
+ * @author weiQiang
+ * @date 2016/10/8
  */
-public interface SysRoleRepository extends JpaRepository<SysRole,Integer> {
+public interface SysRoleRepository extends JpaRepository<SysRole, Integer> {
+
+    /**
+     * 通过id获取角色
+     *
+     * @param id
+     * @return
+     */
     SysRole findById(Integer id);
 }

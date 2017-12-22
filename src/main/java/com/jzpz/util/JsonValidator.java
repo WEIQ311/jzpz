@@ -5,7 +5,9 @@ import java.text.StringCharacterIterator;
 
 /**
  * 用于校验一个字符串是否是合法的JSON格式
- * Created by Administrator on 2017/6/3.
+ *
+ * @author Administrator
+ * @date 2017/6/3
  */
 public class JsonValidator {
 

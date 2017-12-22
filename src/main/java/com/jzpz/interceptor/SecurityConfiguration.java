@@ -15,65 +15,84 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 /**
- * Created by weiQiang on 2016/10/2.
+ * @author weiQiang
+ * @date 2016/10/2
  */
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
-    //配置Spring Security的Filter链
+
+    /**
+     * 配置Spring Security的Filter链
+     *
+     * @param web
+     * @throws Exception
+     */
     @Override
     public void configure(WebSecurity web) throws Exception {
 
     }
-    //配置如何通过拦截器保护请求
+
+    /**
+     * 配置如何通过拦截器保护请求
+     *
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .csrf().disable()
-            .authorizeRequests()
-            .antMatchers(
-                    HttpMethod.GET,
-                    "/login.html",
-                    "/*.js",
-                    "/**/*.js",
-                    "/**/*.woff2",
-                    "/**/*.woff",
-                    "/**/*.map",
-                    "/**/*.css",
-                    "/**/*.TTF"
-            )
-            .permitAll()
-            .antMatchers(
-                    HttpMethod.POST,
-                    "/user/*"
-            )
-            .permitAll()
-            .anyRequest().authenticated()
-            .and()
-            .formLogin()
-            .loginPage("/login.html")
-            .defaultSuccessUrl("/index.html")
-            .permitAll()
-            .and()
-            .rememberMe()
-            .tokenValiditySeconds(1000)
-            .key("spitterKey")
-            .and()
-            .logout()
-            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-            //注销失败跳转到登录页面
-            .logoutSuccessUrl("/login.html")
-            .permitAll();
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers(
+                        HttpMethod.GET,
+                        "/login.html",
+                        "/*.js",
+                        "/**/*.js",
+                        "/**/*.woff2",
+                        "/**/*.woff",
+                        "/**/*.map",
+                        "/**/*.css",
+                        "/**/*.TTF"
+                )
+                .permitAll()
+                .antMatchers(
+                        HttpMethod.POST,
+                        "/user/*"
+                )
+                .permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login.html")
+                .defaultSuccessUrl("/index.html")
+                .permitAll()
+                .and()
+                .rememberMe()
+                .tokenValiditySeconds(1000)
+                .key("spitterKey")
+                .and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                //注销失败跳转到登录页面
+                .logoutSuccessUrl("/login.html")
+                .permitAll();
         // 允许iframe 嵌套
         http.headers().frameOptions().disable();
-       // http.headers().disable();
+        // http.headers().disable();
     }
-    //配置user-detail
+
+    /**
+     * 配置user-detail
+     *
+     * @param auth
+     * @throws Exception
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         //auth.inMemoryAuthentication().withUser("admin").password("bonc").roles("USER","ADMIN");
-        auth.userDetailsService(userDetailsService).passwordEncoder( new BCryptPasswordEncoder());
+        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
 }

@@ -10,7 +10,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 
-@Service(value = "hostInfoService")
+/**
+ * @author weiQiang
+ */
+@Service(value = "HostInfoService")
 public class HostInfoServiceImpl implements HostInfoService {
     /**
      * 搜索主机
@@ -34,7 +37,7 @@ public class HostInfoServiceImpl implements HostInfoService {
     @Override
     public Result batchHost(HostConfig hostConfig, String preview) {
         Result result = JzpzUtil.bathHost(hostConfig);
-        if(!Boolean.valueOf(preview)&&result.isFlag()){
+        if (!Boolean.valueOf(preview) && result.isFlag()) {
             List<HostInfo> hostInfos = (List<HostInfo>) result.getData();
             hostInfos.forEach(hostInfo -> hostInfo.setHostId(UUID.randomUUID().toString()));
         }

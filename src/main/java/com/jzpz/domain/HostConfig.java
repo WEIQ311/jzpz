@@ -6,6 +6,8 @@ import java.io.Serializable;
 
 /**
  * 主机配置
+ *
+ * @author weiQiang
  */
 @Data
 @RequiredArgsConstructor

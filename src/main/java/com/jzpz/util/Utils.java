@@ -3,10 +3,11 @@ package com.jzpz.util;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by weiQiang on 2016/10/4.
+ * @author weiQiang
+ * @date 2016/10/4
  */
 public class Utils {
-    public static String getIpAddress(HttpServletRequest request){
+    public static String getIpAddress(HttpServletRequest request) {
         String ip = request.getHeader("x-forwarded-for");
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getHeader("Proxy-Client-IP");

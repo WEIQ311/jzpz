@@ -7,7 +7,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by Administrator on 2016/11/21.
+ * @author Administrator
+ * @date 2016/11/21
  */
 @Table(name = "media_info")
 @Entity
@@ -20,7 +21,7 @@ public class MediaInfo implements Serializable {
     private static final long serialVersionUID = 5153003475632732455L;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer mediaId;
 
     private String mediaName;

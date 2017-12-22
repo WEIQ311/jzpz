@@ -11,73 +11,78 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author weiQiang
+ */
 @RestController
 public class ExcelController {
 
     @Autowired
     private MediaInfoService mediaInfoService;
 
-    @RequestMapping(value = "exportMediaInfo",method = RequestMethod.GET)
-    public void exportMediaInfo(HttpServletResponse response){
+    @RequestMapping(value = "exportMediaInfo", method = RequestMethod.GET)
+    public void exportMediaInfo(HttpServletResponse response) {
         try {
             List<MediaInfo> mediaInfos = (List<MediaInfo>) mediaInfoService.getAllUploadImg().getData();
             XSSFWorkbook wb = new XSSFWorkbook();
-            XSSFCellStyle style = ExcelUtil.excelTableHeadCellStyle(wb);// 表头字体
+            // 表头字体
+            XSSFCellStyle style = ExcelUtil.excelTableHeadCellStyle(wb);
 
             XSSFSheet sheet = wb.createSheet("媒体信息");
-            XSSFRow row0 = sheet.createRow(0);// 设置sheet页名称
+            // 设置sheet页名称
+            XSSFRow row0 = sheet.createRow(0);
 
-            XSSFCell xssfCell0_0 = row0.createCell(0);
-            xssfCell0_0.setCellValue("媒体ID");
-            xssfCell0_0.setCellStyle(style);
+            XSSFCell xssfCell0 = row0.createCell(0);
+            xssfCell0.setCellValue("媒体ID");
+            xssfCell0.setCellStyle(style);
 
-            XSSFCell xssfCell0_11 = row0.createCell(1);
-            xssfCell0_11.setCellValue("媒体名称");
-            xssfCell0_11.setCellStyle(style);
+            XSSFCell xssfCell1 = row0.createCell(1);
+            xssfCell1.setCellValue("媒体名称");
+            xssfCell1.setCellStyle(style);
 
-            XSSFCell xssfCell0_1 = row0.createCell(2);
-            xssfCell0_1.setCellValue("备注");
-            xssfCell0_1.setCellStyle(style);
+            XSSFCell xssfCell01 = row0.createCell(2);
+            xssfCell01.setCellValue("备注");
+            xssfCell01.setCellStyle(style);
 
-            XSSFCell xssfCell0_2 = row0.createCell(3);
-            xssfCell0_2.setCellValue("录入者");
-            xssfCell0_2.setCellStyle(style);
+            XSSFCell xssfCell02 = row0.createCell(3);
+            xssfCell02.setCellValue("录入者");
+            xssfCell02.setCellStyle(style);
 
-            XSSFCell xssfCell0_3 = row0.createCell(4);
-            xssfCell0_3.setCellValue("录入时间");
-            xssfCell0_3.setCellStyle(style);
-            xssfCell0_3.setAsActiveCell();
+            XSSFCell xssfCell03 = row0.createCell(4);
+            xssfCell03.setCellValue("录入时间");
+            xssfCell03.setCellStyle(style);
+            xssfCell03.setAsActiveCell();
 
-            XSSFCellStyle cellStyle = ExcelUtil.excelTableContextCellStyle(wb);// 表内字体
+            // 表内字体
+            XSSFCellStyle cellStyle = ExcelUtil.excelTableContextCellStyle(wb);
             int rowIndex = 1;
             for (MediaInfo mediaInfo : mediaInfos) {
                 XSSFRow row = sheet.createRow(rowIndex);
 
-                XSSFCell xssfCell_0 = row.createCell(0);
-                xssfCell_0.setCellValue(mediaInfo.getMediaId());
-                xssfCell_0.setCellStyle(cellStyle);
+                XSSFCell xssfCell00 = row.createCell(0);
+                xssfCell00.setCellValue(mediaInfo.getMediaId());
+                xssfCell00.setCellStyle(cellStyle);
 
-                XSSFCell xssfCell_01 = row.createCell(1);
-                xssfCell_01.setCellValue(mediaInfo.getMediaName());
-                xssfCell_01.setCellStyle(cellStyle);
+                XSSFCell xssfCell = row.createCell(1);
+                xssfCell.setCellValue(mediaInfo.getMediaName());
+                xssfCell.setCellStyle(cellStyle);
                 //sheet.setColumnWidth(1, (mediaInfo.getMediaName().length()) * 256 );
 
-                XSSFCell xssfCell_1 = row.createCell(2);
-                xssfCell_1.setCellValue(mediaInfo.getRemark());
-                xssfCell_1.setCellStyle(cellStyle);
+                XSSFCell xssfCell2 = row.createCell(2);
+                xssfCell2.setCellValue(mediaInfo.getRemark());
+                xssfCell2.setCellStyle(cellStyle);
 
-                XSSFCell xssfCell_2 = row.createCell(3);
-                xssfCell_2.setCellValue(mediaInfo.getInsertUser().getRealName());
-                xssfCell_2.setCellStyle(cellStyle);
+                XSSFCell xssfCell3 = row.createCell(3);
+                xssfCell3.setCellValue(mediaInfo.getInsertUser().getRealName());
+                xssfCell3.setCellStyle(cellStyle);
 
-                XSSFCell xssfCell_3 = row.createCell(4);
-                xssfCell_3.setCellValue(mediaInfo.getInsertTime());
-                xssfCell_3.setCellStyle(cellStyle);
+                XSSFCell xssfCell4 = row.createCell(4);
+                xssfCell4.setCellValue(mediaInfo.getInsertTime());
+                xssfCell4.setCellStyle(cellStyle);
                 rowIndex++;
             }
             response.setContentType("application/vnd.ms-excel");
@@ -91,23 +96,24 @@ public class ExcelController {
         }
     }
 
-    @RequestMapping(value = "exportMediaDoc",method = RequestMethod.GET)
-    public void exportMediaDoc(Integer mediaId,HttpServletResponse response){
-        String  mediaInfo = mediaInfoService.findMediaById(mediaId);
+    @RequestMapping(value = "exportMediaDoc", method = RequestMethod.GET)
+    public void exportMediaDoc(Integer mediaId, HttpServletResponse response) {
+        String mediaInfo = mediaInfoService.findMediaById(mediaId);
         String path = "e:\\poi\\";
         String fileName = "poi.docx";
         String filePath = path + fileName;
         //创建word
-        WordUtil.createWord(path,fileName);
+        WordUtil.createWord(path, fileName);
         //写入数据
-        String data = mediaInfo;//"本文是以poi3.9读写2010word、2010excel、2010ppt,记录学习的脚步相应的功能在代码都有注释,就不解释了 详情可以参看poi3.9的文档主测试函数 TestMain.java";
-        WordUtil.writeDataDocx(filePath,data,true,12);
+        //"本文是以poi3.9读写2010word、2010excel、2010ppt,记录学习的脚步相应的功能在代码都有注释,就不解释了 详情可以参看poi3.9的文档主测试函数 TestMain.java";
+        String data = mediaInfo;
+        WordUtil.writeDataDocx(filePath, data, true, 12);
 //        WordUtil.writeDataDoc(filePath,data);
 
         //读取数据
         //String contentWord=WordUtils.readDataDoc(filePath);
-        String contentWord=WordUtil.readDataDocx(filePath);
-        System.out.println("word的内容为:\n"+contentWord);
+        String contentWord = WordUtil.readDataDocx(filePath);
+        System.out.println("word的内容为:\n" + contentWord);
         System.out.println();
     }
 }

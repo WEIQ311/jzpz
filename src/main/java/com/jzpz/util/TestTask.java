@@ -6,15 +6,17 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 /**
  * 测试定时任务
- * Created by weiQiang on 2016/10/24.
+ *
+ * @author weiQiang
+ * @date 2016/10/24
  */
 @Configuration
 @EnableScheduling
 public class TestTask {
 
     @Scheduled(cron = "10 2 * * * ?") // 每10秒执行一次
-    public void testTask(){
-        System.out.println("我是定时任务里面的……"+DateUtils.getNow2String());
+    public void testTask() {
+        System.out.println("我是定时任务里面的……" + DateUtils.getNow2String());
         /*
             我是定时任务里面的……2016-10-25 00:02:10
             我是定时任务里面的……2016-10-25 01:02:10

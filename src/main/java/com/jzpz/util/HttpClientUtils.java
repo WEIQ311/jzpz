@@ -26,9 +26,9 @@ import java.util.Map;
  */
 public class HttpClientUtils {
 
-    private static Logger logger = LoggerFactory.getLogger(HttpClientUtils.class);
+    public static final int TIME_OUT = 10 * 1000;
 
-    public static final int timeout = 10 * 1000;
+    private static Logger logger = LoggerFactory.getLogger(HttpClientUtils.class);
 
     /**
      * post请求
@@ -38,7 +38,7 @@ public class HttpClientUtils {
      * @return
      */
     public static String httpPostClientServer(String url, Map<String, String> param) {
-        return httpClientServer(url, param, true, timeout, true);
+        return httpClientServer(url, param, true, TIME_OUT, true);
     }
 
     /**
@@ -62,7 +62,7 @@ public class HttpClientUtils {
      * @return
      */
     public static String httpPostClientServer(String url, Map<String, String> param, boolean postParamType) {
-        return httpClientServer(url, param, true, timeout, postParamType);
+        return httpClientServer(url, param, true, TIME_OUT, postParamType);
     }
 
     /**
@@ -86,7 +86,7 @@ public class HttpClientUtils {
      * @return
      */
     public static String httpGetClientServer(String url, Map<String, String> param) {
-        return httpClientServer(url, param, false, timeout);
+        return httpClientServer(url, param, false, TIME_OUT);
     }
 
     /**
@@ -142,7 +142,8 @@ public class HttpClientUtils {
         PostMethod postMethod = null;
         GetMethod getMethod = null;
         InputStream inputStream = null;
-        if (requestType) {//post请求
+        //post请求
+        if (requestType) {
             postMethod = new PostMethod(url);
             httpClient.getParams().setIntParameter(HttpConnectionParams.CONNECTION_TIMEOUT, timeout);
             NameValuePair[] nameValuePair = new NameValuePair[param.size()];

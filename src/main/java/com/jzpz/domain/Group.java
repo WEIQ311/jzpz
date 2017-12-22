@@ -7,7 +7,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by weiQiang on 2016/10/8.
+ * @author weiQiang
+ * @date 2016/10/8
  */
 @Entity
 @Table(name = "sys_group")
@@ -15,7 +16,7 @@ import java.util.Date;
 @RequiredArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Builder
-public class Group implements Serializable{
+public class Group implements Serializable {
 
     private static final long serialVersionUID = -4348777688740242815L;
     @Id

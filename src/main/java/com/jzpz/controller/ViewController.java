@@ -8,12 +8,13 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by weiQiang on 2016/10/2.
+ * @author weiQiang
+ * @date 2016/10/2
  */
 @Controller
 public class ViewController {
     @RequestMapping(value = "/403", method = RequestMethod.GET)
-    public ModelAndView toLoginPage (HttpServletRequest request){
+    public ModelAndView toLoginPage(HttpServletRequest request) {
         System.out.println("进入无权限界面");
         ModelAndView mav = new ModelAndView("/login.html");
         return mav;

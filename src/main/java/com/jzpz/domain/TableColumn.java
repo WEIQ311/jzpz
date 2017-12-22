@@ -6,13 +6,15 @@ import java.io.Serializable;
 
 /**
  * 创建表列基本信息
- * Created by weiQiang on 2016/9/24.
+ *
+ * @author weiQiang
+ * @date 2016/9/24
  */
 @Data
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @RequiredArgsConstructor
 @Builder
-public class TableColumn implements Serializable{
+public class TableColumn implements Serializable {
 
     private static final long serialVersionUID = 1L;
     /**

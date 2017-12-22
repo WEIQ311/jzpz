@@ -1,7 +1,5 @@
 package com.jzpz.service.Impl;
 
-import com.jzpz.controller.UserController;
-import com.jzpz.domain.SysRole;
 import com.jzpz.domain.Users;
 import com.jzpz.repository.SysRoleRepository;
 import com.jzpz.repository.UsersRepository;
@@ -19,14 +17,18 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Created by weiQiang on 2016/10/7.
+ * @author weiQiang
+ * @date 2016/10/7
  */
-@Service
-public class UserServiceImpl implements UserService,UserDetailsService {
+@Service(value = "UserService")
+public class UserServiceImpl implements UserService, UserDetailsService {
+
     @Autowired
     private UsersRepository usersRepository;
+
     @Autowired
     private SysRoleRepository sysRoleRepository;
+
     @Override
     public Users getUserByname(String username) {
         return Users.builder().userName("admin").passWord("admin").build();
@@ -41,6 +43,7 @@ public class UserServiceImpl implements UserService,UserDetailsService {
         System.err.println(user.getRoleId() + "正在执行查询角色名称");
         return new UserDetails() {
             private static final long serialVersionUID = 3720901165271071386L;
+
             @Override
             public Collection<? extends GrantedAuthority> getAuthorities() {
                 List<SimpleGrantedAuthority> auths = new ArrayList<>();

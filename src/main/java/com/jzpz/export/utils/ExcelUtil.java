@@ -7,6 +7,9 @@ import org.apache.poi.xssf.usermodel.*;
 
 import java.text.DecimalFormat;
 
+/**
+ * @author weiQiang
+ */
 public class ExcelUtil {
 	/*
 	 // 创建字体对象
@@ -67,125 +70,121 @@ public class ExcelUtil {
 
 	 */
 
-	/**
-	 * 导出Excel标题字体
-	 * 
-	 * @param wb
-	 * @return
-	 */
-	public static XSSFCellStyle excelTitleCellStyle(XSSFWorkbook wb) {
-		XSSFFont font = wb.createFont();
-		font.setFamily(FontFamily.SWISS);
-		font.setFontHeightInPoints(Short.valueOf("12"));
+    /**
+     * 导出Excel标题字体
+     *
+     * @param wb
+     * @return
+     */
+    public static XSSFCellStyle excelTitleCellStyle(XSSFWorkbook wb) {
+        XSSFFont font = wb.createFont();
+        font.setFamily(FontFamily.SWISS);
+        font.setFontHeightInPoints(Short.valueOf("12"));
 
-		XSSFCellStyle cellStyle_title = wb.createCellStyle();
-		cellStyle_title.setAlignment(XSSFCellStyle.ALIGN_CENTER);
-		cellStyle_title.setBorderTop(BorderStyle.THIN);
-		cellStyle_title.setBorderBottom(BorderStyle.THIN);
-		cellStyle_title.setBorderLeft(BorderStyle.THIN);
-		cellStyle_title.setBorderRight(BorderStyle.THIN);
-		cellStyle_title.setFont(font);
-		return cellStyle_title;
-	}
+        XSSFCellStyle cellStyleTitle = wb.createCellStyle();
+        cellStyleTitle.setAlignment(XSSFCellStyle.ALIGN_CENTER);
+        cellStyleTitle.setBorderTop(BorderStyle.THIN);
+        cellStyleTitle.setBorderBottom(BorderStyle.THIN);
+        cellStyleTitle.setBorderLeft(BorderStyle.THIN);
+        cellStyleTitle.setBorderRight(BorderStyle.THIN);
+        cellStyleTitle.setFont(font);
+        return cellStyleTitle;
+    }
 
-	/**
-	 * 补充Excel空格
-	 * 
-	 * @param row
-	 *            行
-	 * @param cellStyle
-	 *            表格样式
-	 * @param startCellIndex
-	 *            开始列
-	 * @param endCellIndex
-	 *            结束咧
-	 */
-	public static void makeUpCell(XSSFRow row, XSSFCellStyle cellStyle, int startCellIndex, int endCellIndex) {
-		for (int i = startCellIndex; i <= endCellIndex; i++) {
-			XSSFCell xssfCell_title_6 = row.createCell(i);
-			xssfCell_title_6.setCellValue("");
-			xssfCell_title_6.setCellStyle(cellStyle);
-		}
-	}
+    /**
+     * 补充Excel空格
+     *
+     * @param row            行
+     * @param cellStyle      表格样式
+     * @param startCellIndex 开始列
+     * @param endCellIndex   结束咧
+     */
+    public static void makeUpCell(XSSFRow row, XSSFCellStyle cellStyle, int startCellIndex, int endCellIndex) {
+        for (int i = startCellIndex; i <= endCellIndex; i++) {
+            XSSFCell xssfCellTitle = row.createCell(i);
+            xssfCellTitle.setCellValue("");
+            xssfCellTitle.setCellStyle(cellStyle);
+        }
+    }
 
-	/**
-	 * 表头字体
-	 * 
-	 * @param wb
-	 * @return
-	 */
-	public static XSSFCellStyle excelTableHeadCellStyle(XSSFWorkbook wb) {
-		XSSFFont font = wb.createFont();
-		font.setFamily(FontFamily.SWISS);
-		font.setFontHeightInPoints(Short.valueOf("9"));
-		font.setBold(true);
+    /**
+     * 表头字体
+     *
+     * @param wb
+     * @return
+     */
+    public static XSSFCellStyle excelTableHeadCellStyle(XSSFWorkbook wb) {
+        XSSFFont font = wb.createFont();
+        font.setFamily(FontFamily.SWISS);
+        font.setFontHeightInPoints(Short.valueOf("9"));
+        font.setBold(true);
 
-		XSSFCellStyle cellStyle_title = wb.createCellStyle();
-//		cellStyle_title.setAlignment(XSSFCellStyle.ALIGN_CENTER);
-		cellStyle_title.setBorderTop(BorderStyle.THIN);
-		cellStyle_title.setBorderBottom(BorderStyle.THIN);
-		cellStyle_title.setBorderLeft(BorderStyle.THIN);
-		cellStyle_title.setBorderRight(BorderStyle.THIN);
-		cellStyle_title.setFont(font);
-		return cellStyle_title;
-	}
+        XSSFCellStyle cellStyleTitle = wb.createCellStyle();
+//		cellStyleTitle.setAlignment(XSSFCellStyle.ALIGN_CENTER);
+        cellStyleTitle.setBorderTop(BorderStyle.THIN);
+        cellStyleTitle.setBorderBottom(BorderStyle.THIN);
+        cellStyleTitle.setBorderLeft(BorderStyle.THIN);
+        cellStyleTitle.setBorderRight(BorderStyle.THIN);
+        cellStyleTitle.setFont(font);
+        return cellStyleTitle;
+    }
 
-	/**
-	 * 表内容字体
-	 * 
-	 * @param wb
-	 * @return
-	 */
-	public static XSSFCellStyle excelTableContextCellStyle(XSSFWorkbook wb) {
-		XSSFFont font = wb.createFont();
-		font.setFamily(FontFamily.SWISS);
-		font.setFontHeightInPoints(Short.valueOf("9"));
+    /**
+     * 表内容字体
+     *
+     * @param wb
+     * @return
+     */
+    public static XSSFCellStyle excelTableContextCellStyle(XSSFWorkbook wb) {
+        XSSFFont font = wb.createFont();
+        font.setFamily(FontFamily.SWISS);
+        font.setFontHeightInPoints(Short.valueOf("9"));
 
-		XSSFCellStyle cellStyle_title = wb.createCellStyle();
-		cellStyle_title.setBorderTop(BorderStyle.THIN);
-		cellStyle_title.setBorderBottom(BorderStyle.THIN);
-		cellStyle_title.setBorderLeft(BorderStyle.THIN);
-		cellStyle_title.setBorderRight(BorderStyle.THIN);
-		cellStyle_title.setFont(font);
-		return cellStyle_title;
-	}
+        XSSFCellStyle cellStyleTitle = wb.createCellStyle();
+        cellStyleTitle.setBorderTop(BorderStyle.THIN);
+        cellStyleTitle.setBorderBottom(BorderStyle.THIN);
+        cellStyleTitle.setBorderLeft(BorderStyle.THIN);
+        cellStyleTitle.setBorderRight(BorderStyle.THIN);
+        cellStyleTitle.setFont(font);
+        return cellStyleTitle;
+    }
 
-	/**
-	 * 转换表格内容为String
-	 * 
-	 * @param cell
-	 * @return
-	 */
-	public static String cellValueToString(Cell cell) {
-		if (cell == null) {
-			return "";
-		}
-		String res = "";
-		switch (cell.getCellType()) {
-		case Cell.CELL_TYPE_NUMERIC:
-			double value1 = cell.getNumericCellValue();
-			DecimalFormat decimalFormat = new DecimalFormat("#");
-			res = decimalFormat.format(value1) + "";
-			break;
-		case Cell.CELL_TYPE_BLANK:
-			break;
-		case Cell.CELL_TYPE_BOOLEAN:
-			boolean value2 = cell.getBooleanCellValue();
-			res = value2 + "";
-			break;
-		case Cell.CELL_TYPE_FORMULA:
-			break;
-		case Cell.CELL_TYPE_STRING:
-			String value3 = cell.getStringCellValue();
-			res = value3 + "";
-			break;
-		case Cell.CELL_TYPE_ERROR:
-			byte value4 = cell.getErrorCellValue();
-			res = value4 + "";
-			break;
-		default:
-			break;
-		}
-		return res;
-	}
+    /**
+     * 转换表格内容为String
+     *
+     * @param cell
+     * @return
+     */
+    public static String cellValueToString(Cell cell) {
+        if (cell == null) {
+            return "";
+        }
+        String res = "";
+        switch (cell.getCellType()) {
+            case Cell.CELL_TYPE_NUMERIC:
+                double value1 = cell.getNumericCellValue();
+                DecimalFormat decimalFormat = new DecimalFormat("#");
+                res = decimalFormat.format(value1) + "";
+                break;
+            case Cell.CELL_TYPE_BLANK:
+                break;
+            case Cell.CELL_TYPE_BOOLEAN:
+                boolean value2 = cell.getBooleanCellValue();
+                res = value2 + "";
+                break;
+            case Cell.CELL_TYPE_FORMULA:
+                break;
+            case Cell.CELL_TYPE_STRING:
+                String value3 = cell.getStringCellValue();
+                res = value3 + "";
+                break;
+            case Cell.CELL_TYPE_ERROR:
+                byte value4 = cell.getErrorCellValue();
+                res = value4 + "";
+                break;
+            default:
+                break;
+        }
+        return res;
+    }
 }

@@ -10,7 +10,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by weiQiang on 2016/10/10.
+ * @author weiQiang
+ * @date 2016/10/10
  */
 @Entity
 @Table(name = "sys_table")
@@ -18,7 +19,7 @@ import java.util.Date;
 @RequiredArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Builder
-public class UserTable implements Serializable{
+public class UserTable implements Serializable {
 
     private static final long serialVersionUID = -5129287490881240747L;
 

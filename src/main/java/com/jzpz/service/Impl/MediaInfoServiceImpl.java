@@ -11,9 +11,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/11/21.
+ * @author Administrator
+ * @date 2016/11/21
  */
-@Service
+@Service(value = "MediaInfoService")
 public class MediaInfoServiceImpl implements MediaInfoService {
 
     @Autowired

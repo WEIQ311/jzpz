@@ -10,30 +10,33 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 系统管理
- * Created by weiQiang on 2016/10/8.
+ *
+ * @author weiQiang
+ * @date 2016/10/8
  */
 @RestController
 @RequestMapping(value = "/sys")
 public class SysController {
     /**
      * 根据用户权限获取用户的模块
+     *
      * @param request
      * @return
      */
-    @RequestMapping(value = "getDropdownMe",method = RequestMethod.GET)
-    public String getDropdownMe(HttpServletRequest request){
+    @RequestMapping(value = "getDropdownMe", method = RequestMethod.GET)
+    public String getDropdownMe(HttpServletRequest request) {
         try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            Object [] authortities = auth.getAuthorities().toArray();
-            if (null!=authortities){
-                String [] authortity = authortities[0].toString().split(",");
-                for (int i = 0;i<authortity.length;i++){
+            Object[] authortities = auth.getAuthorities().toArray();
+            if (null != authortities) {
+                String[] authortity = authortities[0].toString().split(",");
+                for (int i = 0; i < authortity.length; i++) {
                     System.out.println(authortity[i]);
                 }
             }
             System.out.println(request.getSession().getAttribute(UserController.USERSESSION_KEY));
             System.out.println(request.getAttribute(UserController.USERSESSION_KEY));
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
         return null;

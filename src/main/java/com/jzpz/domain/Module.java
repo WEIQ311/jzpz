@@ -7,7 +7,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by weiQiang on 2016/10/8.
+ * @author weiQiang
+ * @date 2016/10/8
  */
 @Entity
 @Table(name = "sys_module")
@@ -15,12 +16,12 @@ import java.util.Date;
 @RequiredArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Builder
-public class Module implements Serializable{
+public class Module implements Serializable {
 
-	private static final long serialVersionUID = -4245516930648433162L;
+    private static final long serialVersionUID = -4245516930648433162L;
 
-	@Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer moduleId;
 
     private String moduleName;

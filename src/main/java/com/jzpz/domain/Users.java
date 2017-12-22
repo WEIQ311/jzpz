@@ -1,18 +1,14 @@
 package com.jzpz.domain;
 
+import lombok.*;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.*;
-
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-
 /**
- * Created by weiQiang on 2016/10/7.
+ * @author weiQiang
+ * @date 2016/10/7
  */
 @Entity
 @Table(name = "sys_user")
@@ -21,11 +17,11 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Builder
 public class Users implements Serializable {
-    
-	private static final long serialVersionUID = -620221547485473029L;
 
-	@Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private static final long serialVersionUID = -620221547485473029L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String userName;
