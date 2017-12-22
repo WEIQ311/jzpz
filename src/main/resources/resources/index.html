@@ -3,26 +3,26 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>首页</title>
-    <link rel="icon" href="./img/setting.ico" type="image/x-icon" />
+    <link rel="icon" href="./img/setting.ico" type="image/x-icon"/>
     <script type="text/javascript" src="./head.js"></script>
     <script type="text/javascript" src="./js/index.js"></script>
     <script type="text/javascript">
         jQuery(function () {
-           jQuery(window).resize(function () {
-               setTimeout(function () {
-                   jQuery('#mainIFrame').height(
-                       jQuery(window).height()-jQuery('#navbar').height()-25
-                   );
-                },100);
-           }).resize();
-            jQuery('#navbar-menu').delegate('li','click',
+            jQuery(window).resize(function () {
+                setTimeout(function () {
+                    jQuery('#mainIFrame').height(
+                        jQuery(window).height() - jQuery('#navbar').height() - 25
+                    );
+                }, 100);
+            }).resize();
+            jQuery('#navbar-menu').delegate('li', 'click',
                 function () {
                     jQuery(this).parent().find('li').removeClass('active').end().end().addClass('active');
                 });
             _openPage('./module/public/clock.html');
         });
         var _openPage = function (url) {
-            jQuery('#mainIFrame').attr('src',url);
+            jQuery('#mainIFrame').attr('src', url);
         }
     </script>
 </head>
@@ -31,7 +31,8 @@
     <div class="navbar navbar-default">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
-                <span class="sr-only">切换导航</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                <span class="sr-only">切换导航</span><span class="icon-bar"></span><span class="icon-bar"></span><span
+                    class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="javascript:void(0);">集中配置</a>
         </div>
@@ -47,11 +48,11 @@
                         <span class="selected"></span>
                     </a>
                 </li>
-               <!-- <li>
-                    <a href="javascript:_openPage('./module/angularModule/index.html')">模块化
-                        <span class="selected"></span>
-                    </a>
-                </li>-->
+                <!-- <li>
+                     <a href="javascript:_openPage('./module/angularModule/index.html')">模块化
+                         <span class="selected"></span>
+                     </a>
+                 </li>-->
                 <li>
                     <a href="javascript:_openPage('./module/uploadImg/index.html')">上传图片
                         <span class="selected"></span>
@@ -67,23 +68,37 @@
                         <span class="selected"></span>
                     </a>
                 </li>
+                <li>
+                    <a href="javascript:_openPage('./module/dialog/index.html')">实时聊天
+                        <span class="selected"></span>
+                    </a>
+                </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle glyphicon glyphicon-list-alt" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 更多<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle glyphicon glyphicon-list-alt" data-toggle="dropdown"
+                       role="button" aria-haspopup="true" aria-expanded="false"> 更多<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="javascript:_openPage('./module/jsonEditor/index.html')" class="glyphicon glyphicon-briefcase" target="_Blank"> JSON编辑器 <span class="selected"> </span></a>
+                            <a href="javascript:_openPage('./module/jsonEditor/index.html')"
+                               class="glyphicon glyphicon-briefcase" target="_Blank"> JSON编辑器 <span
+                                    class="selected"> </span></a>
                         </li>
                         <li>
-                            <a href="javascript:_openPage('./module/specially/index.html')" class="glyphicon glyphicon-time" target="_Blank"> 滑动时钟 <span class="selected"> </span></a>
+                            <a href="javascript:_openPage('./module/specially/index.html')"
+                               class="glyphicon glyphicon-time" target="_Blank"> 滑动时钟 <span
+                                    class="selected"> </span></a>
                         </li>
                         <li>
-                            <a href="javascript:_openPage('./module/wheelmenu/index.html')" class="glyphicon glyphicon-list" target="_Blank"> 多样菜单 <span class="selected"> </span></a>
+                            <a href="javascript:_openPage('./module/wheelmenu/index.html')"
+                               class="glyphicon glyphicon-list" target="_Blank"> 多样菜单 <span
+                                    class="selected"> </span></a>
                         </li>
                         <li>
-                            <a href="javascript:_openPage('./module/Tiny-editor/editor.html')" class="glyphicon glyphicon-edit" target="_Blank"> ACE编辑器 <span class="selected"> </span></a>
+                            <a href="javascript:_openPage('./module/Tiny-editor/editor.html')"
+                               class="glyphicon glyphicon-edit" target="_Blank"> ACE编辑器 <span class="selected"> </span></a>
                         </li>
                         <li>
-                            <a href="javascript:_openPage('./module/hostManager/index.html')" class="glyphicon glyphicon-hdd" target="_Blank"> 主机 <span class="selected"> </span></a>
+                            <a href="javascript:_openPage('./module/hostManager/index.html')"
+                               class="glyphicon glyphicon-hdd" target="_Blank"> 主机 <span class="selected"> </span></a>
                         </li>
                     </ul>
                 </li>
@@ -104,7 +119,8 @@
         </div>
     </div>
 </div>
-<iframe scrolling="auto" frameborder="0"  id="mainIFrame" style="padding: 0;margin: 0;width: 100%;height: 100%" marginwidth="0" marginheight="0">
+<iframe scrolling="auto" frameborder="0" id="mainIFrame" style="padding: 0;margin: 0;width: 100%;height: 100%"
+        marginwidth="0" marginheight="0">
 </iframe>
 </body>
 </html>
