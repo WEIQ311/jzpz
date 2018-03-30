@@ -55,12 +55,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/**/*.woff",
                         "/**/*.map",
                         "/**/*.css",
-                        "/**/*.TTF"
+                        "/**/*.TTF",
+                        "/email/*"
                 )
                 .permitAll()
                 .antMatchers(
                         HttpMethod.POST,
-                        "/user/*"
+                        "/user/*",
+                        "/email/*"
                 )
                 .permitAll()
                 .anyRequest().authenticated()
